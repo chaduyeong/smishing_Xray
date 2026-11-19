@@ -1,0 +1,21 @@
+{
+  "name": "smishing-xray-scanner",
+  "version": "1.0.0",
+  "description": "스미싱·보이스피싱 실시간 X-ray 탐지기 (OpenRouter AI & 공공데이터 하이브리드 연동)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "smishing",
+    "phishing",
+    "x-ray",
+    "openrouter",
+    "nemotron"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
