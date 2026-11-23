@@ -1,0 +1,14 @@
+{
+  "name": "smishing-xray",
+  "version": "1.0.0",
+  "private": true,
+  "description": "스미싱 X-ray — X-ray 스캔 + 만약 눌렀다면 시뮬레이션 + 수법 DNA 프로파일링 + 신고 패키지 (AI개발과실전 팀 프로젝트)",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

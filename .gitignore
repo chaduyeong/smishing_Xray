@@ -1,15 +1,13 @@
-# 로컬 환경변수 파일 제외 (인증키 깃허브 유출 방지)
-.env.local
-# 추가 환경변수 파일들 제외
+# API 키가 들어 있는 파일은 GitHub에 올리지 않음
 .env
-# 접미사 붙은 모든 로컬 환경변수 파일 제외
+.env.local
 .env*.local
-# Vercel 로컬 빌드 및 캐시 폴더 제외
-.vercel
-# Node.js 의존성 패키지 폴더 제외
-node_modules
-# 운영체제 임시 파일 제외
+# Vercel 로컬 연결 정보·캐시 폴더
+.vercel/
+# 설치된 패키지 폴더
+node_modules/
+# 정확도 테스트 이어하기용 임시 파일
+results/ai_cache.json
+# 운영체제가 만드는 임시 파일
 .DS_Store
-# 윈도우 썸네일 캐시 파일 제외
 Thumbs.db
-

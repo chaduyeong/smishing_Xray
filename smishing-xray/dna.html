@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- 문자 인코딩(한글 깨짐 방지)과 모바일 화면 크기 설정 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>수법 DNA 프로파일링 | 스미싱 X-ray</title>
+  <link rel="stylesheet" href="css/nav.css" /> <!-- [통합] 세 페이지 공통 상단 메뉴 스타일 -->
+  <link rel="stylesheet" href="css/dna.css" /> <!-- 수법 DNA 화면 스타일 -->
+</head>
+<body>
+  <!-- ===== [통합] 공통 상단 메뉴 (세 페이지 모두 같은 모양) ===== -->
+  <nav class="site-nav" aria-label="주요 메뉴">
+    <a class="site-brand" href="index.html">🔬 스미싱 X-ray</a> <!-- 서비스 이름 (첫 화면으로 이동) -->
+    <div class="site-tabs">
+      <a class="site-tab" href="index.html">🔍 X-ray 스캔</a>
+      <a class="site-tab is-active" href="dna.html" aria-current="page">🧬 수법 DNA</a> <!-- 지금 보고 있는 탭 -->
+      <a class="site-tab" href="report.html">🚨 신고 패키지</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <h1 class="page-title">수법 DNA 프로파일링</h1>
+    <p class="page-desc">의심 문자를 넣으면 어떤 <b>수법 계열</b>인지, 그 수법이 어떻게 피해로 이어지는지 분석해요.</p>
+
+    <div class="layout">
+      <!-- ===== 왼쪽: 문자 입력 영역 ===== -->
+      <section class="card">
+        <h2 class="card-title">분석할 문자</h2>
+        <textarea id="msgInput" placeholder="받은 문자 내용을 붙여넣으세요 (캡처 이미지는 Ctrl+V로 붙여넣기 가능)"></textarea>
+
+        <!-- 문자 캡처 이미지 올리기: AI가 이미지 속 글자를 읽어서 분석 -->
+        <div class="image-upload">
+          <label class="upload-btn">
+            📷 캡처 이미지 올리기
+            <input type="file" id="imageInput" accept="image/png,image/jpeg,image/webp" hidden />
+          </label>
+          <div id="imagePreview" class="image-preview" hidden>
+            <img id="previewImg" alt="업로드한 문자 캡처 미리보기" />
+            <button type="button" id="removeImage">✕ 이미지 빼기</button>
+          </div>
+        </div>
+
+        <!-- 예시 문자 버튼: 눌러보면 입력창에 예시가 채워짐 (app.js에서 생성) -->
+        <div class="examples">
+          <span class="examples-label">예시 넣어보기</span>
+          <div id="exampleButtons" class="example-buttons"></div>
+        </div>
+
+        <button id="analyzeBtn" class="btn-primary">🧬 수법 DNA 분석</button>
+        <p class="notice">※ AI 분석이 안 될 때는 키워드 규칙 분석으로 자동 전환돼요.</p>
+
+        <!-- [통합] 지금 문자로 신고 패키지 만들기 (dna-app.js가 동작 담당) -->
+        <button type="button" id="toReportBtn" class="site-handoff handoff-full">🚨 이 문자로 신고 패키지 만들기</button>
+      </section>
+
+      <!-- ===== 오른쪽: 분석 결과 영역 (app.js가 내용을 채움) ===== -->
+      <section class="card" id="resultCard">
+        <h2 class="card-title">분석 결과</h2>
+        <div id="result" class="result-empty">왼쪽에 문자를 넣고 분석 버튼을 눌러주세요.</div>
+      </section>
+    </div>
+
+    <!-- ===== 아래: 수법 계보 (분석 기록 모아보기, app.js가 내용을 채움) ===== -->
+    <section class="card lineage-card">
+      <div class="lineage-head">
+        <h2 class="card-title">🧬 나의 수법 계보</h2>
+        <button type="button" id="clearHistory" class="btn-text">전체 삭제</button>
+      </div>
+      <p id="storageNote" class="lineage-note">분석 기록은 이 브라우저에만 저장돼요.</p>
+      <div id="lineage"></div>
+    </section>
+  </main>
+
+  <!-- 분류기 → 계보 저장소 → 화면 동작 순서로 불러온다 (순서 중요) -->
+  <script src="js/handoff.js"></script>      <!-- [통합] 페이지끼리 문자 넘기기 -->
+  <script src="js/dna-rules.js"></script>    <!-- 키워드 규칙 분류기 -->
+  <script src="js/dna-history.js"></script>  <!-- 수법 계보 저장소 -->
+  <script src="js/dna-app.js"></script>      <!-- 화면 동작 (원래 app.js에서 이름만 바꿈) -->
+</body>
+</html>

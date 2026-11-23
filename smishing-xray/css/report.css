@@ -1,0 +1,671 @@
+/* ========================================================
+   신고패키지 스타일시트
+   ======================================================== */
+
+/* 색상·여백·그림자 값을 변수로 모아둔 곳 (여기만 바꾸면 전체 색이 바뀜) */
+:root {
+  --primary-color: #1e3a8a;       /* 짙은 신뢰의 네이비 블루 */
+  --primary-hover: #1d4ed8;
+  --danger-color: #dc2626;        /* 긴급/위험 레드 */
+  --danger-bg: #fef2f2;
+  --warning-color: #ea580c;       /* 주의 오렌지 */
+  --success-color: #16a34a;       /* 성공 그린 */
+  --bg-color: #f1f5f9;            /* 연한 그레이 배경 */
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* 모든 요소의 기본 여백을 없애고 크기 계산 방식을 통일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 페이지 전체 글꼴·배경색·글자색 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Pretendard", "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* ----------------- 헤더 ----------------- */
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  color: #ffffff;
+  padding: 2.2rem 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* 머리말 안쪽 내용을 가운데 정렬하고 최대 너비 제한 */
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 배지와 제목을 한 줄로 나란히 배치 */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.5rem;
+}
+
+/* '긴급 대응' 빨간 배지 */
+.logo-badge {
+  background-color: var(--danger-color);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* 페이지 제목 글자 크기·굵기 */
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* 제목 아래 설명 문장 */
+.header .subtitle {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+/* 설명 문장 속 강조 단어 */
+.header .subtitle strong {
+  color: #f8fafc;
+}
+
+/* ----------------- 컨테이너 레이아웃 ----------------- */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.8rem;
+}
+
+/* 화면이 좁으면(태블릿·모바일) 2단 → 1단으로 바꿈 */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------- 카드 공통 ----------------- */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.8rem;
+}
+
+/* 카드 제목 줄 (STEP 번호 + 제목) */
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+/* 'STEP 1' 같은 단계 번호 배지 */
+.step-num {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* 카드 제목 글자 */
+.card-title h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* 카드 제목 아래 안내 문장 */
+.card-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* ----------------- 이미지 업로드 드롭존 ----------------- */
+.drop-zone {
+  border: 2px dashed #94a3b8;
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  background-color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+/* 마우스를 올리거나 파일을 끌고 있을 때 상자 색 강조 */
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: var(--primary-color);
+  background-color: #eff6ff;
+}
+
+/* 업로드 안내 카메라 아이콘 */
+.upload-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 업로드 상자 안내 문장 */
+.drop-zone p {
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+/* 지원 형식 안내 작은 글씨 */
+.drop-zone .support-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* 올린 이미지 미리보기 영역 */
+.preview-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 미리보기 이미지 크기 제한 */
+.preview-wrapper img {
+  max-width: 100%;
+  max-height: 380px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  object-fit: contain;
+  background: #fff;
+}
+
+/* '이미지 변경' 버튼 */
+.btn-change-img {
+  background-color: #475569;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* '이미지 변경' 버튼에 마우스를 올렸을 때 */
+.btn-change-img:hover {
+  background-color: #334155;
+}
+
+/* ----------------- 진행률 바 ----------------- */
+.progress-box {
+  margin-top: 1.2rem;
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+/* 진행 상태 문구와 퍼센트를 양쪽 끝에 배치 */
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* 진행 막대 바탕 */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* 진행 막대 채워지는 부분 (폭이 % 만큼 늘어남) */
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  transition: width 0.3s ease;
+}
+
+/* ----------------- 입력 폼 스타일 ----------------- */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+/* 같은 줄의 입력칸들이 너비를 똑같이 나눠 갖게 함 */
+.flex-1 {
+  flex: 1;
+}
+
+/* 라벨 + 입력칸 한 묶음 */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+/* 입력칸 제목(라벨) 글자 */
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #334155;
+}
+
+/* 의심 링크 라벨은 빨간색으로 경고 */
+.danger-label {
+  color: var(--danger-color);
+}
+
+/* 글자 입력칸과 여러 줄 입력칸 공통 모양 */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+/* 입력칸을 클릭했을 때 테두리 강조 */
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* 의심 링크 입력칸 (빨간 배경) */
+.danger-input {
+  border-color: #fca5a5 !important;
+  background-color: var(--danger-bg);
+  font-weight: 600;
+  color: var(--danger-color);
+}
+
+/* 의심 링크 입력칸을 클릭했을 때 */
+.danger-input:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+/* 입력칸 아래 작은 도움말 */
+.hint {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ----------------- 버튼 ----------------- */
+.action-buttons {
+  margin-top: 1.5rem;
+}
+
+/* 버튼 공통 모양 */
+.btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+/* 주요 버튼 (남색) */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3);
+}
+
+/* 주요 버튼에 마우스를 올렸을 때 (비활성 상태 제외) */
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* 누를 수 없는(비활성) 버튼 회색 처리 */
+.btn:disabled {
+  background-color: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ----------------- 사이드바 (신고처 & 가이드) ----------------- */
+.hotline-card h2 {
+  font-size: 1.3rem;
+  color: var(--danger-color);
+  margin-bottom: 0.5rem;
+}
+
+/* 긴급 신고 안내 설명 문장 */
+.hotline-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* 신고 기관 목록 (불릿 제거) */
+.hotline-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 신고 기관 한 칸 */
+.hotline-item {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  background-color: #f8fafc;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 신고 기관 칸에 마우스를 올렸을 때 */
+.hotline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 가장 먼저 연락할 기관(KISA 118) 강조 */
+.hotline-item.priority {
+  border-left: 4px solid var(--danger-color);
+  background-color: #fffaf0;
+}
+
+/* 기관 이름과 전화 버튼을 양쪽 끝에 배치 */
+.hotline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+/* 기관 이름 */
+.hotline-header .agency {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text-main);
+}
+
+/* 전화 걸기 버튼 */
+.call-btn {
+  background-color: var(--danger-color);
+  color: white;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: background-color 0.2s;
+}
+
+/* 전화 버튼에 마우스를 올렸을 때 */
+.call-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* 기관별 설명 문장 */
+.hotline-detail {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+/* 신고 사이트 바로가기 링크 */
+.link-btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* 바로가기 링크에 마우스를 올렸을 때 */
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+/* 체크리스트 */
+.action-checklist {
+  background-color: #fefce8;
+  border-color: #fef08a;
+}
+
+/* 체크리스트 제목 */
+.action-checklist h3 {
+  font-size: 1.1rem;
+  color: #854d0e;
+  margin-bottom: 0.8rem;
+}
+
+/* 번호 매긴 행동 요령 목록 */
+.checklist {
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  color: #713f12;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 행동 요령 속 강조 단어 */
+.checklist li strong {
+  color: #a16207;
+}
+
+/* ----------------- 푸터 ----------------- */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  background-color: #ffffff;
+}
+
+/* ========================================================
+   PDF 렌더링용 서식 템플릿 스타일 (인쇄/출력 최적화)
+   ======================================================== */
+.pdf-container {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 38px;
+  color: #111827;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Pretendard", sans-serif;
+  width: 794px;
+  height: 1123px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* A4 한 장 크기 (794×1123px) */
+.pdf-page {
+  box-sizing: border-box;
+  border: 2px solid #1e3a8a;
+  width: 100%;
+  height: 1047px;
+  padding: 30px;
+  background: #ffffff;
+}
+
+/* PDF 머리말 */
+.pdf-header {
+  text-align: center;
+  border-bottom: 2px solid #1e3a8a;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+/* PDF 상단 '신고패키지 증거자료' 배지 */
+.pdf-badge {
+  display: inline-block;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* PDF 제목 */
+.pdf-header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+/* PDF 제목 아래 설명 */
+.pdf-header .pdf-sub {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* 수신 시각·발신 번호 등을 담는 표 */
+.pdf-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+/* 표의 모든 칸 테두리·여백 */
+.pdf-table th,
+.pdf-table td {
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+/* 표의 제목 칸 (회색 배경) */
+.pdf-table th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* 수신 시각 강조 글씨 */
+.highlight-text {
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+/* 의심 URL 빨간 글씨 */
+.danger-text {
+  font-weight: 700;
+  color: #dc2626;
+  word-break: break-all;
+}
+
+/* PDF 본문 구역 (문자 전문, 캡처 이미지) */
+.pdf-section {
+  margin-bottom: 20px;
+}
+
+/* PDF 구역 제목 */
+.pdf-section h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+/* 문자 본문 전문 상자 */
+.pdf-body-box {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  color: #1e293b;
+  min-height: 60px;
+}
+
+/* 캡처 이미지 상자 */
+.pdf-image-box {
+  text-align: center;
+  border: 1px dashed #94a3b8;
+  padding: 10px;
+  background-color: #f8fafc;
+  border-radius: 4px;
+}
+
+/* 캡처 이미지 크기 제한 */
+.pdf-image-box img {
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border: 1px solid #e2e8f0;
+}
+
+/* PDF 맨 아래 안내 문구 */
+.pdf-footer {
+  margin-top: 30px;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 12px;
+  font-size: 10px;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* PDF 저작권 표시 */
+.pdf-footer .copyright {
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* ===== [통합] 캡처 이미지 없이 만든 PDF에서 이미지 자리에 보이는 안내 문구 ===== */
+.pdf-no-image {
+  padding: 2rem 1rem;
+  color: #64748b;
+  text-align: center;
+  font-size: 0.95rem;
+}

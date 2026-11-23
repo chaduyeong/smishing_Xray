@@ -1,0 +1,106 @@
+/* =====================================================================
+ * nav.css — 세 페이지(X-ray 스캔·수법 DNA·신고 패키지) 공통 상단 메뉴
+ * 각 페이지의 CSS와 이름이 겹치지 않게 모든 클래스 앞에 site- 를 붙였다.
+ * ===================================================================== */
+
+/* 메뉴 막대 전체: 남색 배경, 화면 맨 위에 붙어 있음 */
+.site-nav {
+  position: sticky;              /* 스크롤해도 위에 붙어 있음 */
+  top: 0;
+  z-index: 900;                  /* 다른 내용보다 위에 (모달 창보다는 아래) */
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+  min-height: 56px;
+  background: #0f1e3d;
+  box-shadow: 0 2px 8px rgba(15, 30, 61, 0.25);
+  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* 왼쪽 서비스 이름 (누르면 첫 화면으로) */
+.site-brand {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 17px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 메뉴 탭 묶음 (좁은 화면에서는 가로 스크롤) */
+.site-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  min-width: 0;                  /* 좁은 화면에서 탭 묶음이 줄어들 수 있게 (안 넣으면 화면 밖으로 밀려남) */
+  scrollbar-width: none;         /* 파이어폭스 스크롤바 숨김 */
+}
+.site-tabs::-webkit-scrollbar { display: none; } /* 크롬·엣지 스크롤바 숨김 */
+
+/* 탭 하나 */
+.site-tab {
+  display: inline-block;
+  padding: 16px 12px 14px;
+  color: #aab4cc;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+
+/* 탭에 마우스를 올렸을 때 */
+.site-tab:hover { color: #ffffff; }
+
+/* 지금 보고 있는 페이지의 탭 (흰 글씨 + 밑줄) */
+.site-tab.is-active {
+  color: #ffffff;
+  font-weight: 700;
+  border-bottom-color: #ffffff;
+}
+
+/* 키보드로 탭을 고를 때 보이는 테두리 */
+.site-tab:focus-visible,
+.site-brand:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+/* X-ray 페이지는 body에 16px 여백이 있어서, 메뉴만 화면 끝까지 닿게 여백을 상쇄 */
+.page-xray .site-nav {
+  margin: -16px -16px 16px;
+}
+
+/* 페이지 사이로 문자를 넘기는 버튼 공통 모양 (X-ray·수법 DNA 화면에서 사용) */
+.site-handoff {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.site-handoff:hover { background: #eef2ff; border-color: #6366f1; }
+
+/* 다른 페이지에서 문자를 받아왔을 때 위에 잠깐 뜨는 안내 띠 */
+.site-handoff-notice {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 14px;
+}
+
+/* 좁은 화면(휴대폰)에서는 서비스 이름과 탭 사이 간격을 줄임 */
+@media (max-width: 600px) {
+  .site-nav { gap: 8px; padding: 0 12px; }
+  .site-brand { font-size: 15px; }
+  .site-tab { padding: 16px 8px 14px; font-size: 14px; }
+}
