@@ -1,0 +1,13 @@
+# API 키가 들어 있는 파일은 GitHub에 올리지 않음
+.env
+.env.local
+.env*.local
+# Vercel 로컬 연결 정보·캐시 폴더
+.vercel/
+# 설치된 패키지 폴더
+node_modules/
+# 정확도 테스트 이어하기용 임시 파일
+results/ai_cache.json
+# 운영체제가 만드는 임시 파일
+.DS_Store
+Thumbs.db

@@ -6,15 +6,26 @@
   margin: 0; /* 기본 외부 마진을 초기화합니다. */
   padding: 0; /* 기본 내부 패딩을 초기화합니다. */
 } /* 범용 셀렉터를 닫습니다. */
+:root { /* X-ray 화면의 공통 디자인 토큰입니다. */
+  --navy: #0f1e3d; /* 남색 포인트 색상입니다. */
+  --bg: #f3f5f9; /* 페이지 배경색입니다. */
+  --card: #ffffff; /* 카드 배경색입니다. */
+  --line: #e3e7ef; /* 구분선 색상입니다. */
+  --text: #1a2233; /* 기본 글자색입니다. */
+  --muted: #6b7489; /* 보조 글자색입니다. */
+  --primary: #1d4ed8; /* 주요 동작 색상입니다. */
+  --radius: 14px; /* 기본 모서리 둥글기입니다. */
+  --shadow: 0 4px 16px rgba(15,30,61,0.06); /* 기본 카드 그림자입니다. */
+} /* 디자인 토큰을 닫습니다. */
 body { /* 전체 페이지 본문 스타일을 설정합니다. */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif; /* 가독성 높은 시스템 폰트입니다. */
-  background-color: #f0f3f8; /* 눈에 편안한 모던 쿨 그레이 배경색입니다. */
-  color: #2d3748; /* 본문 기본 텍스트 색상입니다. */
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif; /* Pretendard 우선 글꼴입니다. */
+  background-color: var(--bg); /* 디자인 토큰 배경색입니다. */
+  color: var(--text); /* 디자인 토큰 기본 글자색입니다. */
   line-height: 1.6; /* 텍스트 줄간격을 자연스러운 1.6으로 설정합니다. */
   padding: 16px; /* 본문 외곽 패딩을 설정합니다. */
 } /* body 블록을 닫습니다. */
-.container-fluid { /* 3단 대시보드를 위한 최대 1440px 컨테이너입니다. */
-  max-width: 1440px; /* 대형 화면에서 최대 너비를 1440px로 유지합니다. */
+.container-fluid { /* 대시보드를 위한 최대 1240px 컨테이너입니다. */
+  max-width: 1240px; /* 대형 화면에서 최대 너비를 1240px로 유지합니다. */
   margin: 0 auto; /* 화면 중앙에 정렬합니다. */
 } /* container-fluid 블록을 닫습니다. */
 /* ======================================================== */ /* 헤더 영역 스타일 구분선입니다. */
@@ -22,58 +33,69 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
 /* ======================================================== */ /* 구분선입니다. */
 .header { /* 헤더 레이아웃 스타일입니다. */
   display: flex; /* 플렉스박스로 요소를 정렬합니다. */
-  justify-content: space-between; /* 로고와 샘플버튼을 양 끝으로 배치합니다. */
-  align-items: center; /* 세로 중앙 정렬합니다. */
+  flex-direction: column; /* 타이틀과 샘플 버튼을 세로로 배치합니다. */
+  justify-content: center; /* 헤더 콘텐츠를 중앙에 정렬합니다. */
+  align-items: stretch; /* 타이틀 영역을 확보해 가운데 정렬을 유지합니다. */
   flex-wrap: wrap; /* 화면 축소 시 자연스럽게 줄바꿈합니다. */
-  gap: 12px; /* 간격을 12px로 둡니다. */
-  margin-bottom: 18px; /* 메인 대시보드와의 하단 여백입니다. */
-  padding: 8px 4px; /* 헤더 안쪽 패딩입니다. */
+  gap: 18px; /* 타이틀과 샘플 버튼 사이 간격입니다. */
+  margin-bottom: 24px; /* 메인 대시보드와의 하단 여백입니다. */
+  padding: 18px 4px 8px; /* 헤더 안쪽 여백입니다. */
+  text-align: center; /* 타이틀과 설명을 가운데 정렬합니다. */
 } /* header 블록을 닫습니다. */
 .badge-beta { /* 기술 스택 뱃지 스타일입니다. */
-  display: inline-block; /* 인라인 블록 형태입니다. */
-  background: #ebf8ff; /* 하늘색 배경입니다. */
-  color: #2b6cb0; /* 짙은 파란색 텍스트입니다. */
-  font-size: 11px; /* 11px 작은 글씨입니다. */
-  font-weight: 700; /* 두꺼운 볼드체입니다. */
-  padding: 3px 8px; /* 패딩을 부여합니다. */
-  border-radius: 20px; /* 둥근 캡슐형입니다. */
-  margin-bottom: 4px; /* 타이틀과의 간격입니다. */
-  border: 1px solid #bee3f8; /* 은은한 테두리입니다. */
+  display: inline-flex; /* 내용에 맞는 인라인 칩으로 표시합니다. */
+  align-items: center; /* 칩 안의 텍스트를 세로 중앙에 둡니다. */
+  background: #eef2f8; /* 보조 배지의 옅은 남색 배경입니다. */
+  color: var(--muted); /* 보조 배지 글자를 muted 색으로 표시합니다. */
+  font-size: 10px; /* 보조 배지 글자를 작게 표시합니다. */
+  font-weight: 600; /* 보조 배지의 글자 굵기입니다. */
+  padding: 4px 9px; /* 칩 안쪽 여백입니다. */
+  border-radius: 999px; /* 캡슐 모양으로 둥글게 만듭니다. */
+  margin-bottom: 6px; /* 제목과의 간격입니다. */
+  border: 1px solid var(--line); /* 구분이 은은한 테두리입니다. */
 } /* badge-beta 블록을 닫습니다. */
 .badge-ai { /* OpenRouter AI 연동 강조 뱃지 스타일입니다. */
-  display: inline-block; /* 인라인 블록 형태입니다. */
-  background: #faf5ff; /* 연한 보라색 배경입니다. */
-  color: #6b46c1; /* 보라색 텍스트입니다. */
-  font-size: 11px; /* 11px 작은 글씨입니다. */
+  display: inline-flex; /* 내용에 맞는 인라인 칩으로 표시합니다. */
+  align-items: center; /* 칩 안의 텍스트를 세로 중앙에 둡니다. */
+  background: #eaf0ff; /* 주요 배지의 옅은 파란색 배경입니다. */
+  color: var(--primary); /* 주요 배지 글자를 포인트 색으로 표시합니다. */
+  font-size: 11px; /* 강조 배지 글자를 한 단계 크게 표시합니다. */
   font-weight: 700; /* 볼드체입니다. */
-  padding: 3px 8px; /* 패딩을 부여합니다. */
-  border-radius: 20px; /* 둥근 캡슐형입니다. */
-  margin-bottom: 4px; /* 타이틀과의 간격입니다. */
-  margin-left: 4px; /* 앞 배지와의 간격입니다. */
-  border: 1px solid #e9d5ff; /* 은은한 보라 테두리입니다. */
+  padding: 4px 9px; /* 칩 안쪽 여백입니다. */
+  border-radius: 999px; /* 캡슐 모양으로 둥글게 만듭니다. */
+  margin-bottom: 6px; /* 제목과의 간격입니다. */
+  margin-left: 6px; /* 보조 배지와의 간격입니다. */
+  border: 1px solid #cbd9ff; /* 주요 배지를 구분하는 파란 테두리입니다. */
 } /* badge-ai 블록을 닫습니다. */
 .header h1 { /* 메인 타이틀 스타일입니다. */
-  font-size: 24px; /* 24px 크기로 설정합니다. */
+  font-size: clamp(30px, 4vw, 38px); /* 화면에 맞춰 제목 크기를 조절합니다. */
   font-weight: 800; /* 가장 두꺼운 글꼴입니다. */
-  color: #1a202c; /* 선명한 검은색입니다. */
-  letter-spacing: -0.5px; /* 자간을 살짝 조입니다. */
+  color: var(--navy); /* 남색으로 제목 위계를 강조합니다. */
+  letter-spacing: -1px; /* 큰 제목의 자간을 정돈합니다. */
+  line-height: 1.2; /* 제목 줄 간격을 조정합니다. */
+  margin-top: 8px; /* 배지와 제목 사이 간격입니다. */
 } /* h1 블록을 닫습니다. */
 .subtitle { /* 부제목 스타일입니다. */
-  font-size: 13px; /* 13px 폰트 크기입니다. */
-  color: #718096; /* 부드러운 회색입니다. */
+  max-width: 680px; /* 설명의 한 줄 길이를 제한합니다. */
+  margin: 8px auto 0; /* 설명을 가운데 두고 제목과 간격을 둡니다. */
+  font-size: 14px; /* 읽기 편한 부제목 크기입니다. */
+  color: var(--muted); /* 보조 글자색으로 표시합니다. */
+  line-height: 1.7; /* 설명의 줄 간격을 넉넉하게 둡니다. */
 } /* subtitle 블록을 닫습니다. */
 .sample-buttons-header { /* 헤더 샘플 버튼 묶음입니다. */
   display: flex; /* 가로로 나열합니다. */
+  justify-content: center; /* 샘플 칩을 가운데 정렬합니다. */
   flex-wrap: wrap; /* 줄바꿈 가능하도록 설정합니다. */
-  gap: 6px; /* 버튼 간격을 6px로 둡니다. */
+  width: 100%; /* 좁은 화면에서도 가운데 정렬 기준을 유지합니다. */
+  gap: 8px; /* 샘플 칩 사이 간격입니다. */
 } /* sample-buttons-header 블록을 닫습니다. */
 .btn-sample { /* 샘플 로드 버튼 스타일입니다. */
-  background: #ffffff; /* 하얀색 배경입니다. */
-  color: #4a5568; /* 중간 회색 글자입니다. */
-  border: 1px solid #cbd5e0; /* 옅은 테두리입니다. */
-  padding: 6px 12px; /* 컴팩트한 패딩입니다. */
-  border-radius: 6px; /* 둥근 모서리입니다. */
-  font-size: 12px; /* 12px 폰트입니다. */
+  background: var(--card); /* 밝은 카드색 칩 배경입니다. */
+  color: var(--navy); /* 남색 텍스트입니다. */
+  border: 1px solid var(--line); /* 옅은 구분선 테두리입니다. */
+  padding: 6px 11px; /* 컴팩트한 칩 여백입니다. */
+  border-radius: 999px; /* 샘플 버튼을 캡슐형으로 만듭니다. */
+  font-size: 11px; /* 작은 칩 글자 크기입니다. */
   font-weight: 600; /* 세미 볼드입니다. */
   cursor: pointer; /* 손가락 커서입니다. */
   transition: all 0.2s; /* 부드러운 전환 효과입니다. */
@@ -86,196 +108,225 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
 /* ======================================================== */ /* 데스크탑 3단 레이아웃 구분선입니다. */
 /* 3단 대시보드 그리드 시스템                                */ /* 그리드 주석입니다. */
 /* ======================================================== */ /* 구분선입니다. */
-.dashboard-layout { /* 3단 대시보드 메인 그리드 컨테이너입니다. */
+.dashboard-layout { /* 좌측 입력·결과와 우측 요약을 배치하는 메인 그리드입니다. */
   display: grid; /* 그리드 레이아웃을 선언합니다. */
-  grid-template-columns: 1fr 1.35fr 1.05fr; /* 좌측, 중앙, 우측의 3단 비율을 설정합니다. */
-  gap: 18px; /* 카드 컬럼 간격을 18px로 지정합니다. */
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); /* 좌측 두 카드와 우측 요약의 너비를 비율로 나눕니다. */
+  grid-template-rows: auto 1fr; /* 우측 요약이 길어도 좌측 행 사이 간격을 벌리지 않습니다. */
+  grid-template-areas: "upload summary" "result summary"; /* 데스크톱에서 입력·결과를 왼쪽, 요약을 오른쪽에 둡니다. */
+  gap: 24px; /* 카드 사이 간격을 24px로 지정합니다. */
   align-items: start; /* 컬럼 상단을 맞춥니다. */
 } /* dashboard-layout 블록을 닫습니다. */
+.col-left { grid-area: upload; } /* 업로드·입력 컬럼을 첫 번째 왼쪽 영역에 둡니다. */
+.col-center { grid-area: result; } /* 분석 결과 컬럼을 두 번째 왼쪽 영역에 둡니다. */
+.col-right { grid-area: summary; align-self: stretch; } /* 위험 요약 컬럼이 왼쪽 두 행 전체 높이를 채우게 합니다. */
+.col-right .summary-card { flex: 1 1 auto; } /* 요약 카드를 오른쪽 컬럼 높이까지 늘립니다. */
+.dashboard-layout > * { min-width: 0; } /* 긴 URL과 이미지를 포함한 내용이 그리드 폭을 밀지 않게 합니다. */
 .card-column { /* 개별 컬럼 컨테이너입니다. */
   display: flex; /* 플렉스박스 레이아웃을 사용합니다. */
   flex-direction: column; /* 세로 방향으로 카드를 배치합니다. */
   gap: 16px; /* 카드 간격을 16px로 둡니다. */
 } /* card-column 블록을 닫습니다. */
 .panel-card { /* 각 단의 공통 패널 카드 스타일입니다. */
-  background: #ffffff; /* 순백색 카드 배경입니다. */
-  border-radius: 14px; /* 14px 둥근 모서리입니다. */
-  padding: 18px; /* 안쪽 여백을 18px로 설정합니다. */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); /* 입체 그림자를 부여합니다. */
-  border: 1px solid #e2e8f0; /* 은은한 회색 테두리입니다. */
+  background: var(--card); /* 공통 카드 배경 토큰을 적용합니다. */
+  border-radius: var(--radius); /* 공통 모서리 토큰을 적용합니다. */
+  padding: 24px; /* 카드 안쪽 여백을 넉넉하게 둡니다. */
+  box-shadow: var(--shadow); /* 공통 그림자 토큰을 적용합니다. */
+  border: 1px solid var(--line); /* 공통 구분선 토큰을 적용합니다. */
 } /* panel-card 블록을 닫습니다. */
 .card-header { /* 카드 상단 헤더입니다. */
-  margin-bottom: 12px; /* 내용과의 하단 여백입니다. */
+  margin-bottom: 16px; /* 제목 영역과 카드 내용 사이 여백입니다. */
 } /* card-header 블록을 닫습니다. */
 .card-header h3 { /* 카드 제목 스타일입니다. */
-  font-size: 16px; /* 16px 크기입니다. */
-  font-weight: 700; /* 볼드체입니다. */
-  color: #1a202c; /* 진한 검은색입니다. */
+  font-size: 18px; /* 카드 제목을 또렷하게 표시합니다. */
+  font-weight: 700; /* 제목 위계를 볼드체로 강조합니다. */
+  color: var(--navy); /* 남색으로 제목을 강조합니다. */
+  line-height: 1.4; /* 제목 줄 간격을 정돈합니다. */
 } /* card-header h3 블록을 닫습니다. */
 .card-guide { /* 카드 설명 가이드 문구입니다. */
-  font-size: 11px; /* 11px 작은 폰트입니다. */
-  color: #718096; /* 부드러운 회색입니다. */
+  font-size: 12px; /* 보조 설명을 읽기 편한 크기로 표시합니다. */
+  color: var(--muted); /* muted 색으로 제목과 구분합니다. */
   display: block; /* 줄바꿈을 적용합니다. */
-  margin-top: 3px; /* 제목과의 간격입니다. */
+  margin-top: 5px; /* 제목과 설명 사이 간격입니다. */
+  line-height: 1.6; /* 여러 줄 설명의 간격을 확보합니다. */
 } /* card-guide 블록을 닫습니다. */
 .flex-header { /* 플렉스 형태의 헤더입니다. */
   display: flex; /* 플렉스를 적용합니다. */
   justify-content: space-between; /* 양 끝 정렬합니다. */
-  align-items: flex-start; /* 상단 정렬합니다. */
+  align-items: center; /* 제목과 범례를 세로 중앙 정렬합니다. */
   flex-wrap: wrap; /* 줄바꿈을 허용합니다. */
-  gap: 8px; /* 간격을 8px로 둡니다. */
+  gap: 12px 16px; /* 좁은 화면에서도 요소 간격을 유지합니다. */
 } /* flex-header 블록을 닫습니다. */
 /* ======================================================== */ /* 좌측: 이미지 업로드 및 OCR 스타일 구분선입니다. */
 /* 드래그 앤 드롭 존 및 미리보기                            */ /* 업로드 주석입니다. */
 /* ======================================================== */ /* 구분선입니다. */
 .drop-zone { /* 이미지 드롭존 스타일입니다. */
-  border: 2px dashed #cbd5e0; /* 점선 테두리를 적용합니다. */
-  border-radius: 10px; /* 10px 둥근 모서리입니다. */
-  padding: 16px 12px; /* 내부 패딩입니다. */
+  border: 2px dashed var(--line); /* 공통 구분선 색상의 점선 테두리입니다. */
+  border-radius: var(--radius); /* 공통 모서리 토큰을 적용합니다. */
+  padding: 32px 20px; /* 업로드 영역에 넉넉한 여백을 둡니다. */
   text-align: center; /* 텍스트를 중앙 정렬합니다. */
-  background: #f7fafc; /* 연한 배경을 부여합니다. */
+  background: var(--bg); /* 페이지 배경과 이어지는 연한 바탕입니다. */
   cursor: pointer; /* 클릭 가능한 커서입니다. */
-  transition: all 0.2s ease; /* 전환 애니메이션입니다. */
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; /* 강조 상태를 부드럽게 전환합니다. */
   position: relative; /* 상대 위치 기준점입니다. */
-  min-height: 120px; /* 최소 높이를 120px로 유지합니다. */
+  min-height: 180px; /* 업로드 영역의 최소 높이를 확보합니다. */
   display: flex; /* 플렉스를 씁니다. */
   flex-direction: column; /* 세로 정렬합니다. */
   justify-content: center; /* 세로 중앙 정렬합니다. */
   align-items: center; /* 가로 중앙 정렬합니다. */
 } /* drop-zone 블록을 닫습니다. */
 .drop-zone:hover, .drop-zone.dragover { /* 드래그 오버 시 스타일입니다. */
-  border-color: #3182ce; /* 파란색 점선으로 강조합니다. */
-  background: #ebf8ff; /* 연한 하늘색 배경으로 전환합니다. */
+  border-color: var(--primary); /* 포인트 파란색 점선으로 강조합니다. */
+  background: #edf3ff; /* 옅은 파란색 배경으로 전환합니다. */
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.08); /* 포커스 영역을 은은하게 강조합니다. */
 } /* drop-zone:hover 블록을 닫습니다. */
 .upload-icon { /* 업로드 아이콘 크기입니다. */
-  font-size: 28px; /* 28px 크기입니다. */
-  display: block; /* 블록 요소로 둡니다. */
-  margin-bottom: 6px; /* 문구와의 간격입니다. */
+  display: grid; /* 아이콘을 가운데 놓는 그리드입니다. */
+  place-items: center; /* 아이콘을 가로세로 중앙에 둡니다. */
+  width: 56px; /* 아이콘 배경 너비입니다. */
+  height: 56px; /* 아이콘 배경 높이입니다. */
+  margin: 0 auto 12px; /* 아이콘을 가운데 두고 문구와 간격을 둡니다. */
+  border-radius: 16px; /* 아이콘 배경 모서리를 둥글게 만듭니다. */
+  background: #eaf0ff; /* 옅은 파란색 아이콘 배경입니다. */
+  font-size: 30px; /* 업로드 아이콘 크기입니다. */
 } /* upload-icon 블록을 닫습니다. */
 .drop-text { /* 드롭 텍스트 스타일입니다. */
-  font-size: 13px; /* 13px 크기입니다. */
-  color: #4a5568; /* 짙은 회색입니다. */
+  font-size: 14px; /* 안내 문구를 읽기 편한 크기로 표시합니다. */
+  color: var(--text); /* 기본 글자색을 적용합니다. */
+  line-height: 1.6; /* 안내 문구의 줄 간격을 확보합니다. */
 } /* drop-text 블록을 닫습니다. */
 .btn-browse { /* 파일 선택 링크 스타일 텍스트입니다. */
-  color: #3182ce; /* 파란색 링크색입니다. */
+  color: var(--primary); /* 주요 동작을 파란색으로 구분합니다. */
   text-decoration: underline; /* 밑줄을 추가합니다. */
-  font-weight: 700; /* 볼드체입니다. */
+  font-weight: 700; /* 클릭 안내를 굵게 강조합니다. */
 } /* btn-browse 블록을 닫습니다. */
 .file-hint { /* 파일 형식 안내문 스타일입니다. */
-  font-size: 11px; /* 11px 작은 크기입니다. */
-  color: #a0aec0; /* 옅은 회색입니다. */
+  font-size: 12px; /* 보조 안내를 읽기 편한 크기로 표시합니다. */
+  color: var(--muted); /* 보조 글자색을 적용합니다. */
   display: block; /* 줄바꿈합니다. */
-  margin-top: 4px; /* 간격을 둡니다. */
+  margin-top: 8px; /* 본문과 간격을 둡니다. */
+  line-height: 1.5; /* 보조 안내의 줄 간격입니다. */
 } /* file-hint 블록을 닫습니다. */
 .file-input-hidden { /* 실제 파일 인풋 숨김 처리입니다. */
   display: none; /* 보이지 않게 감춥니다. */
 } /* file-input-hidden 블록을 닫습니다. */
 .preview-wrap { /* 이미지 미리보기 래퍼입니다. */
+  display: flex; /* 이미지와 삭제 버튼을 세로로 배치합니다. */
+  flex-direction: column; /* 미리보기 아래에 버튼을 둡니다. */
+  align-items: center; /* 미리보기 요소를 가운데 정렬합니다. */
+  gap: 12px; /* 이미지와 버튼 사이 간격입니다. */
   width: 100%; /* 너비를 100%로 꽉 채웁니다. */
   position: relative; /* 상대 위치입니다. */
   text-align: center; /* 중앙 정렬합니다. */
 } /* preview-wrap 블록을 닫습니다. */
 .image-preview { /* 미리보기 이미지 자체 스타일입니다. */
   max-width: 100%; /* 부모 너비를 넘지 않게 제한합니다. */
-  max-height: 180px; /* 최대 세로 높이를 180px로 제한합니다. */
-  border-radius: 6px; /* 6px 모서리입니다. */
+  max-height: 240px; /* 최대 세로 높이를 제한합니다. */
+  border-radius: 12px; /* 이미지 모서리를 둥글게 만듭니다. */
   object-fit: contain; /* 비율을 유지합니다. */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 그림자를 줍니다. */
-  border: 1px solid #e2e8f0; /* 테두리입니다. */
+  box-shadow: var(--shadow); /* 카드와 같은 얕은 그림자를 적용합니다. */
+  border: 1px solid var(--line); /* 공통 구분선 색상의 테두리입니다. */
 } /* image-preview 블록을 닫습니다. */
 .btn-remove-image { /* 이미지 삭제 버튼입니다. */
-  margin-top: 8px; /* 이미지와의 간격입니다. */
-  background: #fff5f5; /* 연한 붉은 배경입니다. */
-  color: #e53e3e; /* 빨간색 텍스트입니다. */
-  border: 1px solid #feb2b2; /* 빨간 테두리입니다. */
-  padding: 4px 10px; /* 패딩을 줍니다. */
-  border-radius: 4px; /* 둥근 모서리입니다. */
-  font-size: 11px; /* 11px 크기입니다. */
+  background: #fff1f2; /* 위험 동작을 나타내는 옅은 붉은 배경입니다. */
+  color: #b42318; /* 위험 동작 글자색입니다. */
+  border: 1px solid #fecaca; /* 붉은색 보조 테두리입니다. */
+  padding: 6px 11px; /* 작은 보조 버튼 여백입니다. */
+  border-radius: 999px; /* 작은 캡슐형 버튼입니다. */
+  font-size: 11px; /* 보조 버튼 글자 크기입니다. */
+  font-weight: 600; /* 보조 버튼을 또렷하게 표시합니다. */
+  transition: background-color 0.2s ease, border-color 0.2s ease; /* 상태 전환을 부드럽게 합니다. */
   cursor: pointer; /* 손가락 커서입니다. */
 } /* btn-remove-image 블록을 닫습니다. */
 .btn-remove-image:hover { /* 삭제 버튼 호버 시입니다. */
   background: #fed7d7; /* 배경을 더 어둡게 변경합니다. */
 } /* btn-remove-image:hover 블록을 닫습니다. */
 .ocr-progress-wrap { /* OCR 진행 상태 래퍼입니다. */
-  margin-top: 10px; /* 상단과의 여백입니다. */
-  background: #ebf8ff; /* 파란색 배경입니다. */
-  border: 1px solid #bee3f8; /* 테두리입니다. */
-  border-radius: 8px; /* 모서리를 둥글립니다. */
-  padding: 8px 12px; /* 내부 패딩입니다. */
+  margin-top: 12px; /* 입력 영역과의 간격입니다. */
+  background: var(--card); /* 카드와 같은 밝은 배경입니다. */
+  border: 1px solid var(--line); /* 공통 구분선 색상의 테두리입니다. */
+  border-radius: 12px; /* 모서리를 부드럽게 둥글립니다. */
+  padding: 12px 14px; /* 상태 문구와 바 주위 여백입니다. */
 } /* ocr-progress-wrap 블록을 닫습니다. */
 .ocr-status-text { /* OCR 상태 글씨입니다. */
   font-size: 12px; /* 12px 폰트 크기입니다. */
-  font-weight: 700; /* 볼드체입니다. */
-  color: #2b6cb0; /* 짙은 파란색입니다. */
-  margin-bottom: 4px; /* 바와의 간격입니다. */
+  font-weight: 600; /* 상태 문구를 또렷하게 표시합니다. */
+  color: var(--navy); /* 남색으로 상태를 분명히 표시합니다. */
+  margin-bottom: 8px; /* 상태 문구와 진행 바 사이 간격입니다. */
+  line-height: 1.5; /* 상태 문구의 줄 간격입니다. */
 } /* ocr-status-text 블록을 닫습니다. */
 .ocr-progress-bar-bg { /* 진행바 배경입니다. */
   width: 100%; /* 가로 100%입니다. */
-  height: 6px; /* 높이 6px입니다. */
-  background: #bee3f8; /* 연한 하늘색 바탕입니다. */
-  border-radius: 4px; /* 둥근 모서리입니다. */
+  height: 7px; /* 얇은 7px 진행 바입니다. */
+  background: #e9eef8; /* 채움이 돋보이는 옅은 바탕입니다. */
+  border-radius: 999px; /* 진행 바 양끝을 둥글게 만듭니다. */
   overflow: hidden; /* 넘치는 게이지를 자릅니다. */
 } /* ocr-progress-bar-bg 블록을 닫습니다. */
 .ocr-progress-bar-fill { /* 실제 채워지는 진행 게이지입니다. */
   width: 0%; /* 기본 0%에서 시작합니다. */
   height: 100%; /* 높이를 100% 채웁니다. */
-  background: #3182ce; /* 진한 파란색입니다. */
+  background: linear-gradient(90deg, #60a5fa, var(--primary)); /* 남색 계열로 이어지는 파란 그라데이션입니다. */
   transition: width 0.2s ease; /* 부드러운 게이지 이동 애니메이션입니다. */
 } /* ocr-progress-bar-fill 블록을 닫습니다. */
 .text-input-wrap { /* 텍스트 입력창 래퍼입니다. */
-  margin-top: 12px; /* 상단과의 간격입니다. */
+  margin-top: 16px; /* 진행 상태 영역과의 간격입니다. */
 } /* text-input-wrap 블록을 닫습니다. */
 .input-label { /* 입력 라벨 스타일입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
+  font-size: 13px; /* 입력 라벨을 또렷하게 표시합니다. */
   font-weight: 700; /* 볼드체입니다. */
-  color: #4a5568; /* 짙은 회색입니다. */
-  margin-bottom: 4px; /* 인풋과의 간격입니다. */
+  color: var(--navy); /* 남색으로 입력 라벨을 강조합니다. */
+  margin-bottom: 8px; /* 인풋과의 간격을 확보합니다. */
   display: block; /* 블록 요소로 줄바꿈합니다. */
 } /* input-label 블록을 닫습니다. */
 #messageInput { /* 텍스트에어리어 스타일입니다. */
   width: 100%; /* 100% 너비입니다. */
-  min-height: 110px; /* 110px 높이입니다. */
-  padding: 10px; /* 내부 패딩입니다. */
-  font-size: 13px; /* 13px 폰트 크기입니다. */
-  border: 1px solid #cbd5e0; /* 연회색 테두리입니다. */
-  border-radius: 8px; /* 8px 모서리입니다. */
+  min-height: 120px; /* 입력에 필요한 기본 높이를 확보합니다. */
+  padding: 12px 14px; /* 입력 글자 주위 여백입니다. */
+  font-size: 14px; /* 입력 글자를 읽기 편한 크기로 표시합니다. */
+  color: var(--text); /* 공통 기본 글자색입니다. */
+  background: var(--card); /* 카드와 같은 밝은 배경입니다. */
+  border: 1px solid var(--line); /* 공통 구분선 테두리입니다. */
+  border-radius: 10px; /* 입력창 모서리를 둥글게 만듭니다. */
   font-family: inherit; /* 시스템 폰트 계승입니다. */
+  line-height: 1.6; /* 입력 문장의 줄 간격입니다. */
   resize: vertical; /* 세로 조절 허용입니다. */
   outline: none; /* 아웃라인 제거입니다. */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease; /* 포커스 전환을 부드럽게 합니다. */
 } /* #messageInput 블록을 닫습니다. */
 #messageInput:focus { /* 포커스 시 스타일입니다. */
-  border-color: #3182ce; /* 파란색 테두리입니다. */
-  box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.15); /* 은은한 링입니다. */
+  border-color: var(--primary); /* 포커스 시 주요 파란색 테두리입니다. */
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.12); /* 포커스 링으로 입력 위치를 강조합니다. */
 } /* #messageInput:focus 블록을 닫습니다. */
 .action-buttons { /* 스캔 및 리셋 버튼 래퍼입니다. */
   display: flex; /* 플렉스박스입니다. */
-  gap: 8px; /* 8px 간격입니다. */
-  margin-top: 12px; /* 상단 여백입니다. */
+  gap: 10px; /* 버튼 사이 간격입니다. */
+  margin-top: 16px; /* 입력창과 버튼 사이 여백입니다. */
 } /* action-buttons 블록을 닫습니다. */
 .btn-scan { /* 스캔 메인 액션 버튼입니다. */
   flex: 1; /* 너비를 채웁니다. */
-  background: linear-gradient(135deg, #2b6cb0, #1a365d); /* 그라데이션 파랑 배경입니다. */
+  background: linear-gradient(135deg, #1d4ed8, var(--navy)); /* 남색 계열 그라데이션 주 버튼입니다. */
   color: #ffffff; /* 흰색 글자입니다. */
   border: none; /* 테두리 제거입니다. */
-  padding: 12px; /* 패딩을 줍니다. */
+  padding: 13px 16px; /* 주 버튼 안쪽 여백입니다. */
   font-size: 14px; /* 14px 폰트 크기입니다. */
   font-weight: 700; /* 볼드체입니다. */
-  border-radius: 8px; /* 둥근 모서리입니다. */
+  border-radius: 10px; /* 주 버튼 모서리를 둥글게 만듭니다. */
+  box-shadow: 0 4px 10px rgba(15,30,61,0.14); /* 주 버튼에 얕은 입체감을 줍니다. */
   cursor: pointer; /* 손가락 커서입니다. */
-  transition: transform 0.1s; /* 클릭 효과입니다. */
+  transition: transform 0.1s, box-shadow 0.2s ease; /* 버튼 반응을 부드럽게 합니다. */
 } /* btn-scan 블록을 닫습니다. */
 .btn-scan:hover { /* 호버 시 스타일입니다. */
   transform: translateY(-1px); /* 위로 1px 띄웁니다. */
 } /* btn-scan:hover 블록을 닫습니다. */
 .btn-reset { /* 리셋 버튼입니다. */
-  background: #edf2f7; /* 연회색입니다. */
-  color: #4a5568; /* 회색 폰트입니다. */
-  border: 1px solid #cbd5e0; /* 테두리입니다. */
-  padding: 12px 14px; /* 패딩입니다. */
+  background: transparent; /* 채움 없이 보조 버튼으로 표시합니다. */
+  color: var(--muted); /* 보조 글자색을 적용합니다. */
+  border: 1px solid var(--line); /* 구분선 색상의 테두리입니다. */
+  padding: 12px 14px; /* 버튼 안쪽 여백입니다. */
   font-size: 13px; /* 13px 크기입니다. */
   font-weight: 600; /* 세미볼드입니다. */
-  border-radius: 8px; /* 8px 모서리입니다. */
+  border-radius: 10px; /* 버튼 모서리를 둥글게 만듭니다. */
   cursor: pointer; /* 손가락 커서입니다. */
+  transition: background-color 0.2s ease, border-color 0.2s ease; /* 상태 전환을 부드럽게 합니다. */
 } /* btn-reset 블록을 닫습니다. */
 .btn-reset:hover { /* 리셋 버튼 호버 시입니다. */
   background: #e2e8f0; /* 배경을 어둡게 만듭니다. */
@@ -290,51 +341,66 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
 } /* result-main-card 블록을 닫습니다. */
 .card-legend-inline { /* 중앙 상단 인라인 범례입니다. */
   display: flex; /* 플렉스로 나열합니다. */
-  gap: 8px; /* 8px 간격입니다. */
+  flex-wrap: wrap; /* 좁은 화면에서는 칩을 다음 줄로 보냅니다. */
+  gap: 6px; /* 범례 칩 사이 간격입니다. */
   align-items: center; /* 세로 중앙 정렬입니다. */
 } /* card-legend-inline 블록을 닫습니다. */
 .mini-legend { /* 미니 범례 텍스트입니다. */
-  font-size: 11px; /* 11px 작은 크기입니다. */
   display: inline-flex; /* 인라인 플렉스입니다. */
   align-items: center; /* 세로 중앙입니다. */
-  gap: 4px; /* 점과의 간격입니다. */
-  color: #4a5568; /* 회색 텍스트입니다. */
+  gap: 6px; /* 색상 점과 텍스트 사이 간격입니다. */
+  padding: 5px 9px; /* 범례 칩 안쪽 여백입니다. */
+  border: 1px solid var(--line); /* 칩 구분 테두리입니다. */
+  border-radius: 999px; /* 범례를 캡슐형 칩으로 만듭니다. */
+  background: var(--bg); /* 칩에 옅은 배경을 적용합니다. */
+  color: var(--text); /* 범례 텍스트를 또렷하게 표시합니다. */
+  font-size: 11px; /* 컴팩트한 칩 글자 크기입니다. */
+  white-space: nowrap; /* 각 범례 문구를 한 줄로 유지합니다. */
 } /* mini-legend 블록을 닫습니다. */
 .color-dot { /* 원형 색상 표시 점입니다. */
-  width: 10px; /* 가로 10px입니다. */
-  height: 10px; /* 세로 10px입니다. */
+  width: 9px; /* 색상 점 너비입니다. */
+  height: 9px; /* 색상 점 높이입니다. */
   border-radius: 50%; /* 완전 원형입니다. */
   display: inline-block; /* 인라인 블록입니다. */
+  flex-shrink: 0; /* 좁은 칩 안에서도 원형을 유지합니다. */
 } /* color-dot 블록을 닫습니다. */
 .yellow-dot { /* 노랑 점입니다. */
-  background: #ecc94b; /* 노란색 배경입니다. */
+  background: #d69e00; /* 기관 사칭 의미를 유지하며 노랑을 선명하게 합니다. */
 } /* yellow-dot 블록을 닫습니다. */
 .red-dot { /* 빨강 점입니다. */
-  background: #f56565; /* 빨간색 배경입니다. */
+  background: #dc2626; /* 위험 링크를 나타내는 선명한 빨강입니다. */
 } /* red-dot 블록을 닫습니다. */
 .purple-dot { /* 보라 점입니다. */
-  background: #9f7aea; /* 보라색 배경입니다. */
+  background: #7c3aed; /* 수법 패턴을 나타내는 선명한 보라입니다. */
 } /* purple-dot 블록을 닫습니다. */
 .highlighted-content { /* 하이라이트 본문 박스입니다. */
-  background: #f8fafc; /* 아주 연한 배경입니다. */
-  border: 1px solid #edf2f7; /* 은은한 테두리입니다. */
-  border-radius: 10px; /* 10px 모서리입니다. */
-  padding: 16px; /* 16px 내부 패딩입니다. */
+  background: #f6f8fc; /* 문자 말풍선처럼 보이는 연한 배경입니다. */
+  border: 1px solid var(--line); /* 공통 구분선 테두리입니다. */
+  border-radius: 16px; /* 말풍선 모서리를 부드럽게 둥글립니다. */
+  padding: 20px; /* 메시지 본문 주위 여백입니다. */
   font-size: 14px; /* 14px 크기입니다. */
-  line-height: 1.6; /* 텍스트 아래 잉여 공간이 생기지 않도록 최적의 1.6 행간을 적용합니다. */
+  line-height: 1.8; /* 문자 내용을 읽기 편하게 줄 간격을 넓힙니다. */
   white-space: pre-wrap; /* 원문의 줄바꿈과 띄어쓰기를 보존합니다. */
   word-break: break-all; /* 긴 URL이 넘치지 않게 줄바꿈합니다. */
   position: relative; /* 상대 위치입니다. */
 } /* highlighted-content 블록을 닫습니다. */
 .empty-state { /* 스캔 대기 안내 박스입니다. */
+  display: flex; /* 안내 아이콘과 문구를 세로로 배치합니다. */
+  flex-direction: column; /* 안내 내용을 위아래로 정렬합니다. */
+  align-items: center; /* 대기 안내를 가로 중앙 정렬합니다. */
+  justify-content: center; /* 대기 안내를 세로 중앙 정렬합니다. */
+  min-height: 180px; /* 점선 박스에 충분한 높이를 둡니다. */
   text-align: center; /* 중앙 정렬입니다. */
-  padding: 50px 10px; /* 상하 패딩입니다. */
-  color: #a0aec0; /* 연한 회색입니다. */
+  padding: 32px 16px; /* 점선 박스 안쪽 여백입니다. */
+  border: 1px dashed var(--line); /* 대기 상태를 나타내는 점선 테두리입니다. */
+  border-radius: 12px; /* 대기 박스 모서리를 둥글립니다. */
+  background: var(--card); /* 말풍선 안에 밝은 대기 박스를 둡니다. */
+  color: var(--muted); /* 안내 문구를 보조 글자색으로 표시합니다. */
 } /* empty-state 블록을 닫습니다. */
 .empty-icon { /* 대기 방패 아이콘입니다. */
-  font-size: 36px; /* 36px 크기입니다. */
+  font-size: 40px; /* 방패 아이콘을 눈에 띄게 표시합니다. */
   display: block; /* 블록 요소입니다. */
-  margin-bottom: 8px; /* 문구와의 간격입니다. */
+  margin-bottom: 12px; /* 아이콘과 안내 문구 사이 간격입니다. */
 } /* empty-icon 블록을 닫습니다. */
 /* 하이라이트 단어와 일반 문장 사이의 빈칸 완전 제거 스타일 */ /* 빈칸 제거 주석입니다. */
 .hl { /* 하이라이트 인라인 태그입니다. */
@@ -352,40 +418,50 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   filter: brightness(0.94); /* 살짝 색상을 진하게 만들어 시각적 피드백을 줍니다. */
 } /* hl:hover 블록을 닫습니다. */
 .hl-yellow { /* 노랑/주황: 기관 사칭 의심 최우선 형광펜입니다. */
-  background-color: #fef08a; /* 선명한 형광 노랑 배경입니다. */
+  background-color: #fde047; /* 기관 사칭을 구분하는 선명한 노랑 배경입니다. */
   color: #713f12; /* 가독성 높은 짙은 갈색 텍스트입니다. */
-  border-bottom: 2px solid #eab308; /* 최우선 판별을 알리는 하단 강조선입니다. */
+  border-bottom: 2px solid #ca8a04; /* 최우선 판별을 알리는 진한 노랑 강조선입니다. */
 } /* hl-yellow 블록을 닫습니다. */
 .hl-red { /* 빨강: 위험 링크/IP 의심 형광펜입니다. */
-  background-color: #fecaca; /* 경고를 뜻하는 연한 레드 배경입니다. */
+  background-color: #fca5a5; /* 위험 링크를 구분하는 선명한 빨강 배경입니다. */
   color: #7f1d1d; /* 가독성 높은 짙은 암적색 텍스트입니다. */
+  border-bottom: 2px solid #dc2626; /* 위험 링크를 알리는 빨간 하단 강조선입니다. */
 } /* hl-red 블록을 닫습니다. */
 .hl-purple { /* 보라: 범죄 수법 패턴 일치 형광펜입니다. */
-  background-color: #e9d5ff; /* 수법 패턴을 알리는 연보라 배경입니다. */
+  background-color: #d8b4fe; /* 수법 패턴을 구분하는 선명한 보라 배경입니다. */
   color: #581c87; /* 짙은 보라색 텍스트입니다. */
+  border-bottom: 2px solid #7e22ce; /* 수법 패턴을 알리는 보라 하단 강조선입니다. */
 } /* hl-purple 블록을 닫습니다. */
 .hl-green { /* 초록: 공식 기업/정상 확인 도메인 형광펜입니다. */
-  background-color: #c6f6d5; /* 연한 초록색 배경입니다. */
+  background-color: #86efac; /* 정상 확인 의미를 구분하는 선명한 초록 배경입니다. */
   color: #22543d; /* 가독성 높은 짙은 녹색 텍스트입니다. */
+  border-bottom: 2px solid #16a34a; /* 정상 확인을 알리는 초록 하단 강조선입니다. */
 } /* hl-green 블록을 닫습니다. */
 
 /* 비전(VL) 모델 시각적 분석 안내 박스 */ /* 비전 박스 주석입니다. */
 .visual-analysis-box { /* 이미지 내 시각적 사기 단서 표시 박스입니다. */
-  margin-top: 12px; /* 위쪽과의 여백입니다. */
-  background: #fdf2f8; /* 은은한 핑크/자주 배경입니다. */
-  border: 1px solid #fbcfe8; /* 테두리입니다. */
-  border-radius: 8px; /* 둥근 모서리입니다. */
-  padding: 10px 12px; /* 패딩입니다. */
-  font-size: 12px; /* 글꼴 크기입니다. */
-  color: #831843; /* 진한 텍스트입니다. */
+  margin-top: 16px; /* 결과 본문과의 간격입니다. */
+  background: var(--bg); /* 페이지와 어울리는 밝은 카드 바탕입니다. */
+  border: 1px solid var(--line); /* 공통 구분선 테두리입니다. */
+  border-radius: var(--radius); /* 공통 모서리 토큰을 적용합니다. */
+  padding: 16px; /* 비전 분석 내용 주위 여백입니다. */
+  font-size: 13px; /* 분석 문구를 읽기 편한 크기로 표시합니다. */
+  color: var(--text); /* 공통 기본 글자색입니다. */
+  box-shadow: var(--shadow); /* 카드와 같은 얕은 그림자를 적용합니다. */
 } /* visual-analysis-box 블록을 닫습니다. */
 .visual-analysis-title { /* 시각 분석 제목입니다. */
-  font-weight: 700; /* 볼드체입니다. */
-  margin-bottom: 3px; /* 설명과의 간격입니다. */
+  font-size: 13px; /* 시각 분석 제목 크기입니다. */
+  font-weight: 700; /* 제목을 볼드체로 강조합니다. */
+  color: var(--navy); /* 남색으로 제목 위계를 표시합니다. */
+  margin-bottom: 8px; /* 제목과 설명 사이 간격입니다. */
   display: flex; /* 플렉스입니다. */
   align-items: center; /* 세로 중앙입니다. */
-  gap: 5px; /* 간격입니다. */
+  gap: 8px; /* 아이콘과 제목 사이 간격입니다. */
 } /* visual-analysis-title 블록을 닫습니다. */
+.visual-analysis-box p { /* 시각 분석 설명 문단입니다. */
+  color: var(--muted); /* 설명을 보조 글자색으로 표시합니다. */
+  line-height: 1.65; /* 여러 줄 설명의 가독성을 높입니다. */
+} /* visual-analysis-box p 블록을 닫습니다. */
 
 /* ======================================================== */ /* 화면 이탈 방지 전역 플로팅 툴팁 구분선입니다. */
 /* 유동적 크기 조절 및 화면 이탈 방지 툴팁                   */ /* 플로팅 툴팁 주석입니다. */
@@ -394,15 +470,17 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   position: fixed; /* 뷰포트 기준으로 배치하여 부모 컨테이너에 잘리지 않게 합니다. */
   z-index: 99999; /* 화면의 모든 요소보다 최상단에 뜨도록 합니다. */
   pointer-events: none; /* 마우스 움직임에 방해를 주지 않도록 클릭 이벤트를 통과시킵니다. */
-  background: #1e293b; /* 가독성 높은 다크 슬레이트 배경색입니다. */
-  color: #ffffff; /* 선명한 흰색 폰트입니다. */
-  border-radius: 8px; /* 8px 둥근 모서리입니다. */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35); /* 고급스러운 입체 그림자입니다. */
+  background: var(--navy); /* 남색 말풍선 배경입니다. */
+  color: #f8fafc; /* 어두운 배경에서 선명한 글자색입니다. */
+  border-radius: 12px; /* 말풍선 모서리를 부드럽게 둥글립니다. */
+  box-shadow: 0 12px 28px rgba(15,30,61,0.28); /* 남색 계열의 또렷한 그림자입니다. */
   padding: 8px 12px; /* 불필요한 빈칸을 없애기 위해 컴팩트한 패딩(8px 12px)을 부여합니다. */
+  font-family: inherit; /* 페이지의 Pretendard 우선 글꼴을 계승합니다. */
+  font-size: 12px; /* 툴팁 본문을 읽기 쉬운 크기로 표시합니다. */
   width: max-content; /* 텍스트 길이에 맞춰 자동으로 가로 너비가 유동 조절됩니다. */
   width: fit-content; /* 내용 길이에 맞춰 가로 너비가 딱 맞게 유동 조절됩니다. */
   min-width: 140px; /* 너무 좁아지지 않도록 최소 너비를 140px로 유지합니다. */
-  max-width: min(340px, 85vw); /* 화면 밖으로 넘치지 않게 최대 너비를 제한합니다. */
+  max-width: min(360px, 88vw); /* 화면 밖으로 넘치지 않게 최대 너비를 제한합니다. */
   height: auto; /* 내용 길이에 맞춰 세로 높이가 자동으로 맞춰집니다. */
   line-height: 1.4; /* 타이트하고 읽기 편한 줄간격입니다. */
   text-align: left; /* 좌측 정렬입니다. */
@@ -415,65 +493,67 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   opacity: 0; /* 완전 투명화합니다. */
 } /* floating-tooltip.hidden 블록을 닫습니다. */
 .floating-tooltip .tooltip-header { /* 툴팁 상단 헤더입니다. */
-  font-size: 11px; /* 11px 컴팩트한 크기입니다. */
+  font-size: 12px; /* 헤더를 본문보다 한 단계 강조합니다. */
   font-weight: 800; /* 두꺼운 볼드체입니다. */
-  margin-bottom: 3px; /* 본문과의 여백을 최소화합니다. */
-  border-bottom: 1px solid #334155; /* 미세한 구분선입니다. */
-  padding-bottom: 3px; /* 패딩입니다. */
-  color: #f8fafc; /* 밝은 흰색입니다. */
+  margin-bottom: 6px; /* 본문과의 간격을 확보합니다. */
+  border-bottom: 1px solid rgba(226,232,240,0.28); /* 어두운 배경에서 은은한 구분선입니다. */
+  padding-bottom: 5px; /* 제목 아래 여백입니다. */
+  color: #ffffff; /* 밝은 흰색으로 제목을 강조합니다. */
 } /* floating-tooltip .tooltip-header 블록을 닫습니다. */
 .floating-tooltip .tooltip-body { /* 툴팁 설명 본문입니다. */
-  font-size: 11px; /* 11px 폰트 크기입니다. */
-  color: #cbd5e1; /* 연한 회색 글자입니다. */
+  font-size: 12px; /* 설명을 읽기 편한 크기로 표시합니다. */
+  color: #e2e8f0; /* 어두운 배경에서 잘 읽히는 밝은 회색입니다. */
+  line-height: 1.6; /* 설명의 줄 간격을 넉넉하게 둡니다. */
   word-break: keep-all; /* 단어 단위로 자연스럽게 줄바꿈합니다. */
 } /* floating-tooltip .tooltip-body 블록을 닫습니다. */
 .floating-tooltip .tooltip-danger-point { /* 툴팁 내 위험 지점 강조 문구입니다. */
-  color: #fca5a5; /* 연한 붉은색으로 강조합니다. */
+  color: #fda4af; /* 어두운 배경에서 선명한 붉은색으로 강조합니다. */
   font-weight: 700; /* 볼드체입니다. */
-  margin-top: 3px; /* 위쪽과의 여백입니다. */
+  margin-top: 6px; /* 본문과의 간격을 확보합니다. */
   display: block; /* 블록 요소로 줄바꿈합니다. */
-  font-size: 10.5px; /* 약간 작은 폰트입니다. */
+  font-size: 11px; /* 강조 문구를 작은 글씨로 표시합니다. */
   word-break: keep-all; /* 단어 단위 줄바꿈입니다. */
 } /* floating-tooltip .tooltip-danger-point 블록을 닫습니다. */
 /* 중앙 카드 하단 시뮬레이션 버튼 바 */ /* 시뮬레이션 버튼 주석입니다. */
 .center-card-footer { /* 중앙 카드 좌측 하단 푸터 래퍼입니다. */
-  margin-top: 14px; /* 본문 박스와의 여백입니다. */
+  margin-top: 16px; /* 본문 박스와의 여백입니다. */
   display: flex; /* 플렉스박스입니다. */
   align-items: center; /* 세로 중앙입니다. */
-  justify-content: space-between; /* 양 끝 정렬입니다. */
+  justify-content: flex-start; /* 버튼과 안내를 자연스럽게 왼쪽 정렬합니다. */
   flex-wrap: wrap; /* 줄바꿈 허용입니다. */
-  gap: 10px; /* 간격을 10px로 둡니다. */
+  gap: 10px 12px; /* 좁은 화면에서도 줄·요소 간격을 유지합니다. */
 } /* center-card-footer 블록을 닫습니다. */
 .btn-simulation { /* '만약 눌렀다면?' 시뮬레이션 버튼 스타일입니다. */
   background: linear-gradient(135deg, #dd6b20, #c53030); /* 경각심을 주는 주황·붉은 그라데이션입니다. */
   color: #ffffff; /* 흰색 글자입니다. */
   border: none; /* 테두리 제거입니다. */
-  padding: 10px 16px; /* 패딩입니다. */
-  border-radius: 8px; /* 8px 둥근 모서리입니다. */
-  font-size: 13px; /* 13px 폰트 크기입니다. */
+  padding: 13px 16px; /* 다른 주요 버튼과 같은 높이감의 여백입니다. */
+  border-radius: 10px; /* 다른 버튼과 모서리 둥글기를 맞춥니다. */
+  font-size: 14px; /* 버튼 글자 크기를 통일합니다. */
   font-weight: 700; /* 볼드체입니다. */
   cursor: pointer; /* 손가락 커서입니다. */
   box-shadow: 0 4px 10px rgba(197, 48, 48, 0.25); /* 붉은 그림자입니다. */
   transition: all 0.2s; /* 전환 효과입니다. */
 } /* btn-simulation 블록을 닫습니다. */
 .btn-simulation:hover { /* 시뮬레이션 버튼 호버 시입니다. */
-  transform: translateY(-2px); /* 살짝 떠오릅니다. */
+  transform: translateY(-1px); /* 버튼의 가벼운 호버 반응입니다. */
   box-shadow: 0 6px 14px rgba(197, 48, 48, 0.35); /* 그림자 강조입니다. */
 } /* btn-simulation:hover 블록을 닫습니다. */
 .footer-tip { /* 푸터 팁 안내 문구입니다. */
   font-size: 11px; /* 11px 크기입니다. */
-  color: #a0aec0; /* 연한 회색입니다. */
+  color: var(--muted); /* muted 색으로 보조 안내를 읽기 쉽게 표시합니다. */
+  line-height: 1.5; /* 좁은 화면에서 줄바꿈될 때 읽기 좋게 합니다. */
 } /* footer-tip 블록을 닫습니다. */
 /* ======================================================== */ /* 우측: 위험 수법 분석 요약 스타일 구분선입니다. */
 /* 종합 위험도 및 경찰청 통계 카드                          */ /* 우측 주석입니다. */
 /* ======================================================== */ /* 구분선입니다. */
 .verdict-banner { /* 종합 위험도 배너입니다. */
-  background: #f7fafc; /* 연회색 배경입니다. */
-  border: 2px solid #e2e8f0; /* 테두리입니다. */
-  border-radius: 10px; /* 10px 모서리입니다. */
-  padding: 14px; /* 패딩입니다. */
-  margin-bottom: 14px; /* 하단 통계와의 간격입니다. */
-  transition: all 0.2s; /* 전환 효과입니다. */
+  background: var(--card); /* 대기 상태에 공통 카드 배경을 적용합니다. */
+  border: 2px solid var(--line); /* 상태별 테두리가 선명하게 보이도록 기본선을 둡니다. */
+  border-radius: var(--radius); /* 공통 모서리 토큰을 적용합니다. */
+  padding: 20px; /* 위험도 정보를 여유 있게 강조합니다. */
+  margin-bottom: 18px; /* 하단 통계와 시각적으로 분리합니다. */
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; /* 위험도 상태 전환을 부드럽게 합니다. */
 } /* verdict-banner 블록을 닫습니다. */
 .verdict-banner.verdict-critical { /* 1) 완전위험: 최고 경고 단계 - 진한 빨강/검붉은색 테마입니다. */
   background: #fff1f2; /* 연한 검붉은색 틴트 배경입니다. */
@@ -508,16 +588,16 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   color: #15803d; /* 짙은 녹색 폰트입니다. */
 } /* verdict-banner.verdict-safe #verdictTitle 블록을 닫습니다. */
 .verdict-badge-wrap { /* 배지 래퍼입니다. */
-  margin-bottom: 6px; /* 타이틀과의 간격입니다. */
+  margin-bottom: 10px; /* 배지와 판정 제목 사이 간격입니다. */
 } /* verdict-badge-wrap 블록을 닫습니다. */
 .verdict-badge { /* 위험도 배지 기본 스타일입니다. */
-  padding: 4px 12px; /* 패딩입니다. */
-  border-radius: 14px; /* 둥근 캡슐형입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
+  padding: 6px 14px; /* 배지 글자를 또렷하게 감싸는 여백입니다. */
+  border-radius: 999px; /* 선명한 캡슐형 배지입니다. */
+  font-size: 13px; /* 위험도 단계가 잘 보이도록 크기를 높입니다. */
   font-weight: 800; /* 볼드체입니다. */
   color: #ffffff; /* 흰 글자입니다. */
   display: inline-block; /* 인라인 블록입니다. */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12); /* 은은한 입체 그림자입니다. */
+  box-shadow: 0 3px 8px rgba(15,30,61,0.16); /* 배지에 선명한 입체감을 줍니다. */
 } /* verdict-badge 블록을 닫습니다. */
 .badge-standby { /* 대기 배지 색상입니다. */
   background: #718096; /* 차분한 회색입니다. */
@@ -536,83 +616,91 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   background: linear-gradient(135deg, #22c55e, #16a34a); /* 초록색 그라데이션입니다. */
 } /* badge-safe 블록을 닫습니다. */
 #verdictTitle { /* 판정 제목입니다. */
-  font-size: 15px; /* 15px 크기입니다. */
+  font-size: 20px; /* 종합 판정을 배너의 중심으로 강조합니다. */
   font-weight: 800; /* 볼드체입니다. */
-  color: #1a202c; /* 검은색입니다. */
-  margin-bottom: 4px; /* 설명과의 간격입니다. */
+  color: var(--text); /* 공통 기본 글자색을 적용합니다. */
+  margin-bottom: 8px; /* 판정 제목과 설명 사이 간격입니다. */
+  line-height: 1.3; /* 제목을 안정적으로 표시합니다. */
 } /* #verdictTitle 블록을 닫습니다. */
 #verdictSummary { /* 판정 설명글입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
-  color: #4a5568; /* 회색입니다. */
-  line-height: 1.45; /* 줄간격입니다. */
+  font-size: 13px; /* 위험 사유와 안내를 읽기 편하게 표시합니다. */
+  color: var(--text); /* 설명을 충분한 대비로 표시합니다. */
+  line-height: 1.65; /* 여러 줄 요약의 가독성을 높입니다. */
 } /* #verdictSummary 블록을 닫습니다. */
 .stats-mini-grid { /* 통계 3종 미니 그리드입니다. */
   display: grid; /* 그리드 레이아웃입니다. */
   grid-template-columns: 1fr 1fr; /* 2열로 분할합니다. */
-  gap: 10px; /* 10px 간격입니다. */
-  margin-bottom: 14px; /* 근거 목록과의 간격입니다. */
+  gap: 12px; /* 통계 카드 사이 간격입니다. */
+  margin-bottom: 18px; /* 근거 목록과의 간격입니다. */
 } /* stats-mini-grid 블록을 닫습니다. */
 .mini-stat-box { /* 개별 미니 통계 상자입니다. */
-  background: #f7fafc; /* 연회색 바탕입니다. */
-  border: 1px solid #edf2f7; /* 은은한 테두리입니다. */
-  border-radius: 8px; /* 8px 모서리입니다. */
-  padding: 10px; /* 내부 패딩입니다. */
+  background: var(--card); /* 공통 카드 배경을 적용합니다. */
+  border: 1px solid var(--line); /* 공통 구분선 테두리입니다. */
+  border-radius: 12px; /* 통계 상자 모서리를 둥글게 만듭니다. */
+  padding: 14px; /* 통계 내용 주위 여백입니다. */
+  box-shadow: 0 2px 8px rgba(15,30,61,0.04); /* 숫자 영역을 은은하게 분리합니다. */
 } /* mini-stat-box 블록을 닫습니다. */
 .mini-stat-box.full-width { /* 3번째 경찰청 통계는 가로 전체를 씁니다. */
   grid-column: 1 / -1; /* 2열 전체를 병합합니다. */
 } /* mini-stat-box.full-width 블록을 닫습니다. */
 .stat-caption { /* 통계 캡션 라벨입니다. */
-  font-size: 11px; /* 11px 작은 크기입니다. */
-  color: #718096; /* 회색입니다. */
+  font-size: 12px; /* 통계 라벨을 읽기 편하게 표시합니다. */
+  color: var(--muted); /* 보조 글자색으로 숫자와 구분합니다. */
   display: block; /* 블록으로 줄바꿈합니다. */
-  margin-bottom: 4px; /* 숫자와의 간격입니다. */
+  margin-bottom: 8px; /* 숫자와의 간격입니다. */
 } /* stat-caption 블록을 닫습니다. */
 .stat-num { /* 강조 숫자 폰트입니다. */
-  font-size: 17px; /* 17px 큰 크기입니다. */
+  font-size: 24px; /* 핵심 통계 숫자를 크게 강조합니다. */
   font-weight: 800; /* 가장 두꺼운 글꼴입니다. */
+  line-height: 1.2; /* 숫자 줄 높이를 정돈합니다. */
 } /* stat-num 블록을 닫습니다. */
 .text-danger { /* 위험 개수 빨간색입니다. */
-  color: #e53e3e; /* 빨간색입니다. */
+  color: #dc2626; /* 위험 수치를 선명한 빨강으로 표시합니다. */
 } /* text-danger 블록을 닫습니다. */
 .text-purple { /* 수법 분류 보라색입니다. */
-  color: #6b46c1; /* 보라색입니다. */
-  font-size: 14px; /* 14px 크기입니다. */
+  color: #6d28d9; /* 수법 분류를 선명한 보라색으로 표시합니다. */
+  font-size: 16px; /* 분류명을 읽기 쉽게 표시합니다. */
 } /* text-purple 블록을 닫습니다. */
 .stat-stat-desc { /* 경찰청 통계 설명 텍스트입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
-  color: #2b6cb0; /* 파란색 계열입니다. */
+  font-size: 13px; /* 통계 설명을 읽기 편한 크기로 표시합니다. */
+  color: var(--navy); /* 남색으로 통계 설명을 강조합니다. */
   font-weight: 600; /* 세미볼드입니다. */
-  line-height: 1.4; /* 줄간격입니다. */
+  line-height: 1.6; /* 통계 설명의 줄 간격입니다. */
 } /* stat-stat-desc 블록을 닫습니다. */
 .evidence-section { /* 왜 위험한지 근거 목록 섹션입니다. */
-  margin-top: 10px; /* 상단 여백입니다. */
+  margin-top: 14px; /* 근거 섹션 위쪽 여백입니다. */
 } /* evidence-section 블록을 닫습니다. */
 .evidence-header-title { /* 근거 섹션 제목입니다. */
-  font-size: 13px; /* 13px 크기입니다. */
+  font-size: 15px; /* 근거 섹션의 제목 위계를 강조합니다. */
   font-weight: 700; /* 볼드체입니다. */
-  color: #2d3748; /* 다크 그레이입니다. */
-  margin-bottom: 8px; /* 리스트와의 간격입니다. */
+  color: var(--navy); /* 남색으로 섹션 제목을 표시합니다. */
+  margin-bottom: 12px; /* 리스트와의 간격을 확보합니다. */
 } /* evidence-header-title 블록을 닫습니다. */
 .evidence-list { /* 근거 아이템 세로 나열 컨테이너입니다. */
   display: flex; /* 플렉스박스입니다. */
   flex-direction: column; /* 세로 정렬입니다. */
-  gap: 8px; /* 아이템 간격입니다. */
-  max-height: 300px; /* 과도하게 길어지지 않게 최대 높이를 제한합니다. */
-  overflow-y: auto; /* 내용 초과 시 부드러운 스크롤을 제공합니다. */
-  padding-right: 4px; /* 스크롤바 여백입니다. */
+  gap: 10px; /* 근거 카드 사이 간격입니다. */
+  max-height: none; /* 모든 근거가 보이도록 높이 제한을 제거합니다. */
+  overflow-y: visible; /* 내부 휠 스크롤 없이 근거 항목만큼 영역을 늘립니다. */
+  padding: 2px 6px 2px 2px; /* 근거 카드 주변의 여백입니다. */
 } /* evidence-list 블록을 닫습니다. */
 .evidence-placeholder { /* 근거 플레이스홀더입니다. */
-  font-size: 11px; /* 11px 크기입니다. */
-  color: #a0aec0; /* 연회색입니다. */
-  padding: 12px; /* 패딩입니다. */
+  font-size: 12px; /* 안내 문구를 읽기 편한 크기로 표시합니다. */
+  color: var(--muted); /* 보조 글자색으로 안내를 표시합니다. */
+  padding: 16px; /* 안내 문구 주위 여백입니다. */
   text-align: center; /* 중앙 정렬입니다. */
+  border: 1px dashed var(--line); /* 비어 있는 상태를 은은하게 구분합니다. */
+  border-radius: 10px; /* 안내 영역 모서리를 둥글게 만듭니다. */
+  line-height: 1.6; /* 안내 문구의 줄 간격입니다. */
 } /* evidence-placeholder 블록을 닫습니다. */
 .evidence-item { /* 개별 근거 카드 아이템입니다. */
-  background: #f8fafc; /* 연한 배경입니다. */
-  border-radius: 6px; /* 6px 모서리입니다. */
-  padding: 10px; /* 패딩입니다. */
-  border-left: 3px solid #cbd5e0; /* 기본 왼쪽 바입니다. */
-  font-size: 12px; /* 12px 폰트 크기입니다. */
+  background: var(--card); /* 밝은 카드 배경입니다. */
+  border: 1px solid var(--line); /* 카드 외곽을 은은하게 구분합니다. */
+  border-left: 4px solid #94a3b8; /* 기본 왼쪽 상태 바입니다. */
+  border-radius: 10px; /* 근거 카드 모서리를 둥글게 만듭니다. */
+  padding: 14px 14px 14px 16px; /* 텍스트가 색상 바와 겹치지 않게 여백을 둡니다. */
+  font-size: 13px; /* 근거 내용을 읽기 편한 크기로 표시합니다. */
+  box-shadow: 0 2px 8px rgba(15,30,61,0.04); /* 근거 항목을 배경에서 분리합니다. */
 } /* evidence-item 블록을 닫습니다. */
 .evidence-item.item-yellow { /* 기관 사칭 근거입니다. */
   border-left-color: #d69e2e; /* 노란색 바입니다. */
@@ -632,12 +720,13 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
 } /* evidence-item.item-green 블록을 닫습니다. */
 .evidence-item-title { /* 근거 제목입니다. */
   font-weight: 700; /* 볼드체입니다. */
-  margin-bottom: 2px; /* 설명과의 간격입니다. */
-  color: #1a202c; /* 검은색입니다. */
+  margin-bottom: 5px; /* 제목과 설명 사이 간격입니다. */
+  color: var(--text); /* 공통 글자색으로 제목을 표시합니다. */
+  line-height: 1.45; /* 제목이 여러 줄일 때 간격을 정돈합니다. */
 } /* evidence-item-title 블록을 닫습니다. */
 .evidence-item-desc { /* 근거 상세 설명입니다. */
-  color: #4a5568; /* 회색 폰트입니다. */
-  line-height: 1.4; /* 줄간격입니다. */
+  color: var(--muted); /* 보조 글자색으로 설명을 제목과 구분합니다. */
+  line-height: 1.65; /* 상세 근거의 가독성을 높입니다. */
 } /* evidence-item-desc 블록을 닫습니다. */
 /* ======================================================== */ /* 모달: '만약 눌렀다면?' 시뮬레이션 구분선입니다. */
 /* 시뮬레이션 모달 팝업 스타일                              */ /* 모달 주석입니다. */
@@ -660,11 +749,15 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   display: none !important; /* 화면에서 완전히 제외합니다. */
 } /* modal-overlay.hidden 블록을 닫습니다. */
 .modal-card { /* 모달 본체 창입니다. */
-  background: #ffffff; /* 흰색 카드입니다. */
+  background: var(--card); /* 공통 카드 배경을 적용합니다. */
   width: 100%; /* 부모 너비 기반입니다. */
   max-width: 620px; /* 최대 620px로 제한합니다. */
-  border-radius: 14px; /* 14px 둥근 모서리입니다. */
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25); /* 깊은 그림자입니다. */
+  max-height: 90vh; /* 구형 브라우저에서 모달 높이를 제한합니다. */
+  max-height: 90dvh; /* 동적 뷰포트 높이에 맞춰 모달을 제한합니다. */
+  display: flex; /* 헤더·본문·푸터를 세로 플렉스로 배치합니다. */
+  flex-direction: column; /* 본문 영역만 유연하게 늘어나게 합니다. */
+  border-radius: var(--radius); /* 공통 모서리 토큰을 적용합니다. */
+  box-shadow: 0 18px 48px rgba(15,30,61,0.28); /* 모달을 배경에서 선명하게 띄웁니다. */
   overflow: hidden; /* 넘치는 모서리를 깎습니다. */
   animation: modalPop 0.25s ease-out; /* 부드럽게 튀어나오는 팝 애니메이션입니다. */
 } /* modal-card 블록을 닫습니다. */
@@ -673,109 +766,161 @@ body { /* 전체 페이지 본문 스타일을 설정합니다. */
   to { opacity: 1; transform: scale(1); } /* 원래 크기로 나타납니다. */
 } /* @keyframes modalPop 블록을 닫습니다. */
 .modal-header { /* 모달 헤더입니다. */
-  background: #c53030; /* 경고를 뜻하는 레드 배경입니다. */
+  background: linear-gradient(135deg, #b91c1c, #7f1d1d); /* 경고 의미를 유지하는 짙은 붉은 헤더입니다. */
   color: #ffffff; /* 흰색 텍스트입니다. */
-  padding: 14px 18px; /* 헤더 패딩입니다. */
+  padding: 10px 22px; /* 44px 닫기 버튼에 맞춰 헤더 높이를 억제합니다. */
   display: flex; /* 플렉스입니다. */
   justify-content: space-between; /* 양 끝 정렬입니다. */
   align-items: center; /* 세로 중앙입니다. */
+  gap: 16px; /* 좁은 화면에서도 제목과 닫기 버튼 간격을 둡니다. */
+  flex-shrink: 0; /* 모달이 낮아도 헤더를 항상 표시합니다. */
 } /* modal-header 블록을 닫습니다. */
 .modal-header h3 { /* 모달 타이틀입니다. */
   font-size: 16px; /* 16px 크기입니다. */
   font-weight: 800; /* 가장 두꺼운 글꼴입니다. */
 } /* modal-header h3 블록을 닫습니다. */
 .btn-close-modal { /* 모달 상단 닫기 X 버튼입니다. */
-  background: transparent; /* 배경 투명입니다. */
-  border: none; /* 테두리 제거입니다. */
+  background: rgba(255,255,255,0.12); /* 닫기 버튼을 헤더 안에서 은은하게 구분합니다. */
+  border: 1px solid rgba(255,255,255,0.24); /* 닫기 버튼의 경계를 표시합니다. */
   color: #ffffff; /* 흰색입니다. */
   font-size: 24px; /* 24px 큰 크기입니다. */
+  width: 44px; /* 누르기 편한 버튼 너비입니다. */
+  height: 44px; /* 누르기 편한 버튼 높이입니다. */
+  border-radius: 10px; /* 닫기 버튼 모서리를 둥글게 만듭니다. */
+  display: flex; /* X를 가운데 정렬하는 플렉스입니다. */
+  align-items: center; /* X를 세로 중앙에 둡니다. */
+  justify-content: center; /* X를 가로 중앙에 둡니다. */
   cursor: pointer; /* 손가락 커서입니다. */
   line-height: 1; /* 라인 높이입니다. */
+  flex-shrink: 0; /* 좁은 화면에서도 버튼 크기를 유지합니다. */
 } /* btn-close-modal 블록을 닫습니다. */
 .modal-body { /* 모달 본문 스크롤 영역입니다. */
-  padding: 18px; /* 패딩입니다. */
-  max-height: 60vh; /* 화면의 60% 높이로 제한합니다. */
+  padding: 22px; /* 시나리오 단계 주위 여백입니다. */
+  flex: 1 1 auto; /* 남은 모달 높이를 본문이 사용합니다. */
+  min-height: 0; /* 내용이 플렉스 본문을 밀어내지 않게 합니다. */
   overflow-y: auto; /* 내용 초과 시 스크롤합니다. */
 } /* modal-body 블록을 닫습니다. */
 .sim-step { /* 시뮬레이션 단계별 카드입니다. */
   display: flex; /* 플렉스박스입니다. */
-  gap: 12px; /* 스텝 번호와 내용 간격입니다. */
-  margin-bottom: 14px; /* 단계 사이 간격입니다. */
-  padding-bottom: 14px; /* 패딩입니다. */
-  border-bottom: 1px dashed #e2e8f0; /* 점선 구분선입니다. */
+  position: relative; /* 단계별 연결선을 배치하는 기준점입니다. */
+  gap: 14px; /* 단계 번호와 내용 사이 간격입니다. */
+  margin-bottom: 18px; /* 단계 사이 간격입니다. */
+  padding-bottom: 18px; /* 다음 단계 연결선을 위한 여백입니다. */
+  border-bottom: 1px solid var(--line); /* 단계 구분선을 가볍게 표시합니다. */
 } /* sim-step 블록을 닫습니다. */
+.sim-step:not(:last-child)::after { /* 다음 단계로 이어지는 타임라인 선입니다. */
+  content: ""; /* 연결선을 표시합니다. */
+  position: absolute; /* 단계 안에서 선 위치를 고정합니다. */
+  left: 14px; /* 원형 번호의 가운데에 맞춥니다. */
+  top: 30px; /* 번호 배지 바로 아래부터 선을 시작합니다. */
+  bottom: -19px; /* 다음 단계 번호까지 선을 연결합니다. */
+  width: 2px; /* 타임라인 선 두께입니다. */
+  background: #fecaca; /* 경고 톤의 옅은 연결선입니다. */
+} /* sim-step 타임라인 선을 닫습니다. */
 .sim-step:last-child { /* 마지막 단계입니다. */
   border-bottom: none; /* 구분선을 제거합니다. */
   margin-bottom: 0; /* 마진을 제거합니다. */
   padding-bottom: 0; /* 패딩을 제거합니다. */
 } /* sim-step:last-child 블록을 닫습니다. */
 .sim-step-num { /* 단계 번호 원형 배지입니다. */
-  width: 28px; /* 가로 28px입니다. */
-  height: 28px; /* 세로 28px입니다. */
+  position: relative; /* 연결선 위에 번호 배지를 표시합니다. */
+  z-index: 1; /* 번호 배지가 타임라인 선 앞에 오도록 합니다. */
+  width: 30px; /* 가로 30px입니다. */
+  height: 30px; /* 세로 30px입니다. */
   border-radius: 50%; /* 원형입니다. */
-  background: #c53030; /* 레드 배경입니다. */
+  background: linear-gradient(135deg, #dc2626, #991b1b); /* 경고 톤의 붉은 번호 배지입니다. */
   color: #ffffff; /* 흰색 글자입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
+  font-size: 13px; /* 단계 번호를 선명하게 표시합니다. */
   font-weight: 800; /* 볼드체입니다. */
+  box-shadow: 0 2px 6px rgba(153,27,27,0.2); /* 번호 배지를 구분합니다. */
   display: flex; /* 플렉스입니다. */
   align-items: center; /* 세로 중앙입니다. */
   justify-content: center; /* 가로 중앙입니다. */
   flex-shrink: 0; /* 크기 축소 방지입니다. */
 } /* sim-step-num 블록을 닫습니다. */
 .sim-step-content strong { /* 단계별 제목입니다. */
-  font-size: 13px; /* 13px 크기입니다. */
-  color: #1a202c; /* 검은색입니다. */
+  font-size: 14px; /* 단계 제목을 읽기 편하게 표시합니다. */
+  color: var(--navy); /* 남색으로 단계 제목을 강조합니다. */
   display: block; /* 줄바꿈합니다. */
-  margin-bottom: 2px; /* 본문과의 간격입니다. */
+  margin-bottom: 5px; /* 제목과 설명 사이 간격입니다. */
+  line-height: 1.5; /* 여러 줄 제목 간격을 정돈합니다. */
 } /* sim-step-content strong 블록을 닫습니다. */
 .sim-step-content p { /* 단계별 상세 시나리오 설명입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
-  color: #4a5568; /* 회색입니다. */
-  line-height: 1.45; /* 줄간격입니다. */
+  font-size: 13px; /* 시나리오 설명을 읽기 편한 크기로 표시합니다. */
+  color: var(--muted); /* 설명을 보조 글자색으로 표시합니다. */
+  line-height: 1.65; /* 단계 설명의 가독성을 높입니다. */
 } /* sim-step-content p 블록을 닫습니다. */
 .modal-footer { /* 모달 하단 푸터입니다. */
-  background: #f7fafc; /* 연회색 배경입니다. */
-  padding: 12px 18px; /* 패딩입니다. */
+  background: #fff7f7; /* 신고 연락처가 돋보이는 옅은 경고 배경입니다. */
+  padding: 16px 22px; /* 하단 안내와 버튼 주위 여백입니다. */
   display: flex; /* 플렉스입니다. */
   justify-content: space-between; /* 양 끝 정렬입니다. */
   align-items: center; /* 세로 중앙입니다. */
   flex-wrap: wrap; /* 줄바꿈 허용입니다. */
-  gap: 10px; /* 간격입니다. */
-  border-top: 1px solid #e2e8f0; /* 상단 구분선입니다. */
+  gap: 12px; /* 좁은 화면에서 요소 간격을 유지합니다. */
+  border-top: 1px solid #fecaca; /* 경고 톤으로 상단을 구분합니다. */
+  flex-shrink: 0; /* 모달이 낮아도 신고 안내와 버튼을 항상 표시합니다. */
 } /* modal-footer 블록을 닫습니다. */
 .emergency-contacts { /* 긴급 신고 연락처 안내문입니다. */
-  font-size: 11px; /* 11px 크기입니다. */
-  color: #4a5568; /* 회색입니다. */
+  flex: 1 1 300px; /* 좁은 화면에서 버튼과 자연스럽게 줄바꿈합니다. */
+  padding: 12px 14px; /* 연락처 안내에 여백을 줍니다. */
+  border: 1px solid #fecaca; /* 긴급 안내를 구분하는 붉은 테두리입니다. */
+  border-radius: 10px; /* 안내 상자 모서리를 둥글게 만듭니다. */
+  background: #ffffff; /* 텍스트가 잘 보이도록 밝은 바탕을 둡니다. */
+  font-size: 12px; /* 신고 안내를 읽기 편한 크기로 표시합니다. */
+  color: var(--text); /* 공통 글자색으로 안내를 표시합니다. */
+  line-height: 1.6; /* 여러 줄 연락처 안내의 간격입니다. */
+} /* emergency-contacts 블록을 닫습니다. */
+.emergency-contacts strong { /* 신고 기관과 전화번호 강조입니다. */
+  color: #b91c1c; /* 기관·연락처를 경고 톤으로 강조합니다. */
+  font-weight: 800; /* 연락처 정보를 굵게 표시합니다. */
 } /* emergency-contacts 블록을 닫습니다. */
 .btn-modal-close-action { /* 모달 닫기 확인 버튼입니다. */
-  background: #2d3748; /* 다크 슬레이트 버튼입니다. */
+  background: var(--navy); /* 남색 확인 버튼입니다. */
   color: #ffffff; /* 흰색 텍스트입니다. */
   border: none; /* 테두리 제거입니다. */
-  padding: 6px 14px; /* 패딩입니다. */
-  border-radius: 6px; /* 둥근 모서리입니다. */
-  font-size: 12px; /* 12px 크기입니다. */
+  padding: 10px 16px; /* 확인 버튼 안쪽 여백입니다. */
+  border-radius: 10px; /* 공통 버튼 모서리와 맞춥니다. */
+  font-size: 13px; /* 버튼 글자 크기를 읽기 쉽게 설정합니다. */
   font-weight: 700; /* 볼드체입니다. */
+  white-space: nowrap; /* 버튼 문구 줄바꿈을 방지합니다. */
   cursor: pointer; /* 손가락 커서입니다. */
 } /* btn-modal-close-action 블록을 닫습니다. */
 /* ======================================================== */ /* 모바일 반응형 미디어 쿼리 구분선입니다. */
 /* 스마트폰 화면 (3단 -> 세로 1열 적층)                      */ /* 반응형 주석입니다. */
 /* ======================================================== */ /* 구분선입니다. */
 @media (max-width: 1024px) { /* 1024px 이하 태블릿 및 모바일 화면입니다. */
-  .dashboard-layout { /* 3단 그리드를 세로 1열로 변경합니다. */
-    grid-template-columns: 1fr; /* 1열로 전면 배치합니다. */
-    gap: 14px; /* 컬럼 간격을 14px로 축소합니다. */
-  } /* dashboard-layout 블록을 닫습니다. */
+  .dashboard-layout { /* 태블릿·모바일에서는 업로드, 결과, 요약 순서로 쌓습니다. */
+    grid-template-columns: 1fr; /* 한 열로 전환합니다. */
+    grid-template-rows: auto; /* 각 영역 높이를 내용에 맞춥니다. */
+    grid-template-areas: "upload" "result" "summary"; /* 좁은 화면의 표시 순서를 지정합니다. */
+    gap: 16px; /* 세로 카드 간격을 16px로 줄입니다. */
+  } /* dashboard-layout 반응형 규칙을 닫습니다. */
   .result-main-card { /* 모바일에서 중앙 카드의 최소 높이를 줄입니다. */
     min-height: auto; /* 내용에 맞춰 자동으로 늘어나게 합니다. */
   } /* result-main-card 블록을 닫습니다. */
   .header { /* 모바일에서 헤더를 세로 정렬합니다. */
     flex-direction: column; /* 세로 배치합니다. */
-    align-items: flex-start; /* 왼쪽 정렬합니다. */
+    align-items: stretch; /* 가운데 텍스트 정렬을 유지하도록 폭을 확보합니다. */
   } /* header 블록을 닫습니다. */
   .sample-buttons-header { /* 샘플 버튼도 유연하게 흐릅니다. */
     width: 100%; /* 가로 너비 100%입니다. */
   } /* sample-buttons-header 블록을 닫습니다. */
 } /* 미디어 쿼리 블록을 닫습니다. */
+
+@media (max-width: 600px) { /* 작은 화면에서 터치하기 쉬운 버튼 크기입니다. */
+  .btn-sample { /* 모바일 샘플 칩 터치 영역입니다. */
+    min-height: 44px; /* 샘플 칩의 최소 터치 높이입니다. */
+    padding-left: 14px; /* 샘플 칩의 좌우 여백을 넓힙니다. */
+    padding-right: 14px; /* 샘플 칩의 좌우 여백을 넓힙니다. */
+    display: inline-flex; /* 버튼 내용을 세로 가운데 정렬합니다. */
+    align-items: center; /* 버튼 글자를 세로 중앙에 둡니다. */
+  } /* 모바일 샘플 칩 규칙을 닫습니다. */
+  .btn-remove-image { /* 모바일 이미지 삭제 버튼 터치 영역입니다. */
+    min-height: 44px; /* 삭제 버튼의 최소 터치 높이입니다. */
+    padding: 8px 16px; /* 삭제 버튼의 터치 여백을 넓힙니다. */
+  } /* 모바일 이미지 삭제 버튼 규칙을 닫습니다. */
+} /* 작은 화면 터치 영역 미디어 쿼리를 닫습니다. */
 
 /* ======================================================== */ /* [통합 수정] 공통 숨김 규칙입니다. */
 /* 원래는 툴팁·모달에만 hidden 규칙이 있어서, 이미지 미리보기·OCR 진행 막대·비전 분석 상자가 */

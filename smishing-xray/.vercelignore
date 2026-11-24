@@ -1,0 +1,10 @@
+# Vercel에 배포할 때 올리지 않을 파일
+# API 키 파일 (배포 서버의 키는 Vercel 설정 화면에서 따로 넣음)
+.env
+.env.local
+# 내 컴퓨터 전용 개발 서버
+dev-server.js
+# 정확도 테스트·자동 테스트 파일
+eval/
+results/
+tests/
