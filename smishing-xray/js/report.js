@@ -2,7 +2,7 @@
 // 신고패키지 자바스크립트 로직 (report.js, [통합] 원래 이름 script.js)
 // --------------------------------------------------------
 // 흐름: 캡처 이미지 업로드 → Tesseract OCR로 글자 읽기 → 수신 시각·발신 번호·URL 자동 추출
-//       → 사용자가 확인·수정 → 신고용 증거 PDF(A4 한 장) 다운로드
+//       → 사용자가 확인·수정 → 신고용 증거 PDF(A4 페이지 분할) 다운로드
 // [통합] 추가한 것:
 //   1) X-ray·수법 DNA 화면에서 넘겨받은 문자(와 캡처)를 자동으로 채움
 //   2) 캡처 이미지가 없어도 문자 본문만 있으면 PDF를 만들 수 있게 함
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => { // 화면(HTML)이 다 준
     // 화면 밖의 템플릿을 잠시 렌더링 가능하게 만듦
     pdfPrintArea.style.display = "block";
 
-    // A4 픽셀 크기를 고정하고 이미지 디코딩 후 한 장의 PDF로 캡처
+    // 이미지가 다 그려질 때까지 기다린 뒤, 전체 서식 높이를 캡처
     const waitForPdfImage = currentImageDataUrl && pdfEvidenceImage.decode
       ? pdfEvidenceImage.decode().catch(() => undefined) // 이미지가 다 그려질 때까지 기다림
       : Promise.resolve(); // 이미지가 없으면 바로 진행
@@ -262,9 +262,8 @@ document.addEventListener("DOMContentLoaded", () => { // 화면(HTML)이 다 준
         logging: false,
         backgroundColor: "#ffffff",
         width: 794, // A4 가로 픽셀
-        height: 1123, // A4 세로 픽셀
         windowWidth: 794,
-        windowHeight: 1123,
+        windowHeight: Math.max(1123, pdfPrintArea.scrollHeight),
         scrollX: 0,
         scrollY: 0
       }))
@@ -277,8 +276,24 @@ document.addEventListener("DOMContentLoaded", () => { // 화면(HTML)이 다 준
           compress: true
         });
 
-        const imageData = canvas.toDataURL("image/jpeg", 0.98); // 찍은 그림을 JPEG로
-        pdf.addImage(imageData, "JPEG", 0, 0, 210, 297); // A4(210×297mm) 한 장에 꽉 채움
+        const pageHeight = Math.round(canvas.width * 297 / 210); // 캔버스 폭에 맞춘 A4 세로 높이
+        const pageCanvas = document.createElement("canvas"); // 각 A4 페이지를 임시로 자를 캔버스
+        pageCanvas.width = canvas.width; // 원본 캔버스의 너비를 유지
+        const pageContext = pageCanvas.getContext("2d");
+        if (!pageContext) throw new Error("PDF 페이지 캔버스를 준비하지 못했습니다.");
+
+        for (let sourceY = 0, pageIndex = 0; sourceY < canvas.height; sourceY += pageHeight, pageIndex += 1) {
+          const currentPageHeight = Math.min(pageHeight, canvas.height - sourceY);
+          pageCanvas.height = currentPageHeight; // 마지막 페이지는 남은 콘텐츠 높이만 사용
+          pageContext.clearRect(0, 0, pageCanvas.width, currentPageHeight);
+          pageContext.drawImage(canvas, 0, sourceY, canvas.width, currentPageHeight, 0, 0, canvas.width, currentPageHeight);
+
+          if (pageIndex > 0) pdf.addPage(); // 콘텐츠가 이어지면 다음 A4 페이지를 추가
+          const imageData = pageCanvas.toDataURL("image/jpeg", 0.98);
+          const pageHeightMm = currentPageHeight * 210 / canvas.width;
+          pdf.addImage(imageData, "JPEG", 0, 0, 210, pageHeightMm);
+        }
+
         pdf.save(`신고패키지_증거자료_${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}.pdf`); // 다운로드
       })
       .then(() => {
